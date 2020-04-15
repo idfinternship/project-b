@@ -47,7 +47,7 @@ top: 50px;
             padding: 0;
         }
 
-        #infoBoard {
+        #infoFilter {
 
             position: absolute;
             left: 26%;
@@ -62,8 +62,11 @@ top: 50px;
             display: none;
         }
 /* Pasirinktos šalies teksto laukas */
-        #countryArea {
-
+      #countryFilter {
+            width: 20%;
+            height: 2%;
+        }
+        #countryFilterr {
             width: 100%;
             height: 10%;
         }
@@ -103,13 +106,16 @@ top: 50px;
 
 
     <div id="globalArea"></div>
-<div id="infoBoard">
+<div id="infoFilter">
     <div class="alert-close">×</div>
-    <div id="countryArea"></div>
+    <div id="countryFilter"></div>
+    <div id="countryFilterr"></div>
+    <button id="button_1">Try it</button>
+    <input type="text" placeholder="Type something..." id="myInput">
     <font size="4" face="Calibri">
-  <table class = "table table-responsive" style = "max-height: 90%">
+  <table class = "table table-responsive" style = "max-height: 77%">
   <thead>
-   <tr><th>Kaina</th><th>Trukmė</th></tr>
+   <tr><th>Destination name</th><th>Duration</th><th id="testukaz">Rating</th></tr>
   </thead>
    <tbody id="testas">
    </tbody>
@@ -118,6 +124,8 @@ top: 50px;
 <script>
             $(document).ready(function(c) {
               $('.alert-close').on('click', function(c){
+                document.getElementById("textbox").style.display = '';
+                document.getElementById("search").style.display = '';
                 $(this).parent().fadeOut('slow', function(c){
             });
       });   
