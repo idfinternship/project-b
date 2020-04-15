@@ -25,19 +25,21 @@ class Country
         $this->ID = $ID;
     }
 }
-$conn = mysqli_connect("localhost", "root", "", "fule1");
+
+$conn = mysqli_connect("localhost", "root", "password", "travelog");
 // Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-//$sql = "SELECT * FROM $_POST["CountryName"] WHERE Kaina >" . $_POST["inputKaina"];
-//$sql = "SELECT * FROM mongolia WHERE Kaina >" . $_POST["inputKaina"];
-//$sql = "SELECT * FROM " . $_POST["inputValue"];// . "WHERE Kaina>50";
-$belenkas = $_POST["inputValue"];
-//$sql = "SELECT s.* FROM country p INNER JOIN listing s ON s.id = p.listingId WHERE p.countryName = 'lithuania'";
-$sql = "SELECT s.* FROM country p INNER JOIN listing s ON s.id = p.listingId AND s.rating>'" .$_POST["inputKaina"] ."'
-WHERE p.countryName LIKE '" .$_POST["inputValue"] ."'";
-//$sql = "SELECT * FROM listing";
+/* $sql = "SELECT * FROM $_POST["CountryName"] WHERE Kaina >" . $_POST["inputKaina"];
+$sql = "SELECT * FROM mongolia WHERE Kaina >" . $_POST["inputKaina"];
+$sql = "SELECT * FROM " . $_POST["inputValue"];// . "WHERE Kaina>50";
+$sql = "SELECT s.* FROM country p INNER JOIN listing s ON s.id = p.listingId WHERE p.countryName = 'lithuania'"; */
+
+$sql = "SELECT s.* FROM 
+(SELECT k.name,i.listingId FROM country_has_listing i LEFT JOIN country k ON k.id= i.countryId) p
+ INNER JOIN listing s ON s.id = p.listingId AND s.rating>'" .$_POST["inputKaina"] ."'
+WHERE p.name LIKE '" .$_POST["inputValue"] ."'";
 $stack  = array();
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {

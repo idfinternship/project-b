@@ -9,6 +9,7 @@ $("#button_1").click(function(e) {
 e.preventDefault();
 document.getElementById("myInput").defaultValue = 0;
 var inputVal = document.getElementById("myInput").value;
+$("#testas").load(window.location + " #testas");
 $.ajax({
     url: "Duombaze.php",
     type: "POST",
@@ -35,7 +36,18 @@ $.ajax({
 
 function myScript(ID)
 {
-console.log(ID);
+    
+    $.ajax({
+        url: "Duombaze2.php",
+        type: "POST",
+        data: {
+            'inputID': ID,
+        },
+        success: function(inputData) {
+                let test = JSON.parse(inputData);
+            }
+        })
+        
 }
 
 function callfirst(selectedCountry)
