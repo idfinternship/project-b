@@ -1,6 +1,4 @@
-<?php 
-  require("login_session.php");
- ?>
+<?php require("login_session.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,10 +9,35 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/gio.js"></script>     
     <?php require('style.php'); ?>
+    <?php require('navbar.php'); ?>
 
 <!-- Info lenteles salim -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
+
+#search, #textbox{
+
+position: absolute;
+height: 40px;
+line-height: 40px;
+text-align: center;
+color: #cbcbcb;
+cursor: pointer;
+user-select: none;
+box-sizing: border-box;
+transition: 1s;
+background-color: rgba(110, 110, 110, 0.8);
+top: 50px;
+}
+
+#search {
+  left: 950px;
+  width: 60px;
+}
+#textbox{
+  left: 800px;
+  width: 150px;
+}
 
         #globalArea {
 
@@ -32,10 +55,10 @@
             width: 50%;
             height: 50%;
             line-height: 50px;
-            text-align: center;
+            text-align: center; 
             color: white;
             font-size: 20px;
-            background-color: rgba(106, 107, 111, 0.6);
+            background-color: rgba(106,   107, 111, 0.6);
             display: none;
         }
 /* Pasirinktos šalies teksto laukas */
@@ -71,14 +94,14 @@
           transition: color 0.2s ease-in-out;
             width: 22px;
 }
-
-
-
+</style>
 </head>
 <body>
-    
-    </style>
-    <?php require('navbar.php'); ?>
+<input id="textbox" type="text" name="fname">
+<div id="search">Search</div> 
+<script src="js/search.js"></script>
+
+
     <div id="globalArea"></div>
 <div id="infoBoard">
     <div class="alert-close">×</div>
@@ -91,7 +114,6 @@
    <tbody id="testas">
    </tbody>
   </table>
-
   <!-- Lentelės išjungimo scriptas -->
 <script>
             $(document).ready(function(c) {
@@ -102,5 +124,6 @@
 });
 </script>
 <script src="js/countryselect.js"></script>
+
 </body>
 </html>
