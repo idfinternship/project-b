@@ -1,26 +1,58 @@
-var container = document.getElementById("globalArea");
+﻿var container = document.getElementById("globalArea");
 var controller = new GIO.Controller(container);
-
+controller.setInitCountry("LT");
 // use the onCountryPicked() to set callback when clicked country changed
 
-controller.onCountryPicked(callback);
+controller.onCountryPicked(callfirst);
 
-// the callback function can get parameter contains some country data, the detailed of the parameter can be found in the API document
+$("#button_1").click(function(e) {
+e.preventDefault();
+document.getElementById("myInput").defaultValue = 0;
+var inputVal = document.getElementById("myInput").value;
+$.ajax({
+    url: "Duombaze.php",
+    type: "POST",
+    data: {
+        'inputValue': localStorage.getItem('CountryName'),
+        'inputKaina': inputVal,
+    },
+    success: function(inputData) {
+            document.getElementById("button_1").onclick = null;
+        let testas = document.getElementById("testas");
+           if (inputData.search("nulis") != -1) {
+               testas.insertAdjacentText("beforeend", "no matches found"); // jeigu duombazėje nėra duomenų apie šalį;
+           }
+           else {
+               let test = JSON.parse(inputData);
+               for (var i = 0; i < test.length; i++) {
+                   testas.insertAdjacentHTML("beforeend", "<tr> <td align='left'> <button onClick='myScript("+ test[i].ID +")'>" + test[i].name + " </button></td><td>"
+                    + test[i].duration + "</td> <td align='left'>" + test[i].rating +"</td></tr>");
+                }
+            }
+        }
+    })
+});
 
-function callback(selectedCountry) {
+function myScript(ID)
+{
+console.log(ID);
+}
 
-    $("#countryArea").text(selectedCountry.name + " picked!");
-    $("#infoBoard").fadeIn(1000);
-
-    testfunction(selectedCountry.name);
+function callfirst(selectedCountry)
+{
+    $("#countryChosen").text("Chosen country: " +selectedCountry.name);
+    $("#infoFilter").fadeIn(1000)
+    $("#countryFilter").text("Select filters:");
 
     setTimeout(function() {
-
-        // $( "#infoBoard" ).fadeOut( 1000 );
-        $("#infoBoard");
+        $("#infoFilter");
 
     }, 1000);
-
+    localStorage.setItem('CountryName', selectedCountry.name); // sukuriamas lokalus kintamasis šalies pavadinimui
+    let testas = document.getElementById("testas"); // gauna elementą pagal jo ID
+    testas.innerHTML = null; // keičia duomenis kitos valstybės
+    document.getElementById("textbox").style.display = 'none'; // paslepia paieškos laukus
+    document.getElementById("search").style.display = 'none';  // paslepia paieškos laukus
 }
 
 $.ajax({
@@ -37,26 +69,3 @@ $.ajax({
     }
 
 });
-
-function testfunction(name) {
-    $.ajax({
-        url: "Duombaze.php",
-        type: "POST",
-        data: {
-            'countryname': name,
-        },
-        success: function(inputData) {
-            let testas = document.getElementById("testas");
-            testas.innerHTML = null; // keičia duomenis kitos valstybės
-            if (inputData.search("nulis") != -1)
-                testas.insertAdjacentText("beforeend", "no matches found"); // jeigu duombazėje nėra duomenų
-            else {
-                let test = JSON.parse(inputData);
-                for (var i = 0; i < test.length; i++) {
-                    testas.insertAdjacentHTML("beforeend", "<tr>  <td>" + test[i].price + "</td><td>" + test[i].duration + "</td></tr>");
-                }
-            }
-        }
-    });
-
-}
