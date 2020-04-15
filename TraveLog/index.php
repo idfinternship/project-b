@@ -62,11 +62,11 @@ top: 50px;
             display: none;
         }
 /* Pasirinktos šalies teksto laukas */
-      #countryFilter {
+      #countryChosen {
             width: 20%;
             height: 2%;
         }
-        #countryFilterr {
+        #countryFilter {
             width: 100%;
             height: 10%;
         }
@@ -108,8 +108,8 @@ top: 50px;
     <div id="globalArea"></div>
 <div id="infoFilter">
     <div class="alert-close">×</div>
+    <div id="countryChosen"></div>
     <div id="countryFilter"></div>
-    <div id="countryFilterr"></div>
     <button id="button_1">Try it</button>
     <input type="text" placeholder="Type something..." id="myInput">
     <font size="4" face="Calibri">
