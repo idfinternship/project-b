@@ -214,3 +214,8 @@ main {
 .solar #solarIcon {
   display: block;
 }
+
+.form-control{
+  height:calc(1.5em + .75rem + 15px);
+}
+

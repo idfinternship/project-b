@@ -4,14 +4,13 @@
 
 	$to = $email;
 
-	$subject = "TraveLog Signup Verification";
+	$subject = "TraveLog Password Change Request";
 	$body = '
 
-	Thanks for signing up!
-	Your account: '.$username.' has been created!
+	A request has been made to change your account\'s password.
 
-	Please click this link to activate your account:
-	'.ROOT_URL.'verify.php?email='.$email.'&verification_hash='.$verification_hash.'
+	Please click this link to change your password:
+	'.ROOT_URL.'verify_password.php?email='.$email.'&verification_hash='.$verification_hash.'
 	';
 
 	$headers = array ('From' => MAIL_USER, 'To' => $to,'Subject' => $subject);

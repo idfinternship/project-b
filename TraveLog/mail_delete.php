@@ -4,14 +4,13 @@
 
 	$to = $email;
 
-	$subject = "TraveLog Signup Verification";
+	$subject = "TraveLog Account Deletion Request";
 	$body = '
 
-	Thanks for signing up!
-	Your account: '.$username.' has been created!
+	A request has been made to delete your account.
 
-	Please click this link to activate your account:
-	'.ROOT_URL.'verify.php?email='.$email.'&verification_hash='.$verification_hash.'
+	Click this link to completely remove your account:
+	'.ROOT_URL.'verify_delete.php?email='.$email.'&verification_hash='.$verification_hash.'
 	';
 
 	$headers = array ('From' => MAIL_USER, 'To' => $to,'Subject' => $subject);

@@ -1,5 +1,8 @@
 <?php 
+  require('config/config.php');
+  require('config/db.php');
   require("login_session.php");
+
  ?>
 <!DOCTYPE html>
 <html lang="en">
