@@ -1,5 +1,5 @@
 <?php 
-	define('ROOT_URL', 'http://localhost/project-b/TraveLog/');
+	define('ROOT_URL', 'http://localhost/TraveLog/');
 	define('DB_HOST', 'localhost');
 	define('DB_USER', 'root');
 	define('DB_PASS', 'password');
