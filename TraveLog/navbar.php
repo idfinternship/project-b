@@ -55,50 +55,31 @@
       <?php if(!$isLoggedIn): ?>
       <li class="nav-item">
         <a href="login.php" class="nav-link">
-          <svg
-            aria-hidden="true"
-            focusable="false"
-            data-prefix="fad"
-            data-icon="alien-monster"
-            role="img"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 576 512"
-            class="svg-inline--fa fa-alien-monster fa-w-18 fa-9x"
-          >
-            <g class="fa-group">
-                <path fill="currentColor" d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"></path>
-              <path
-                fill="currentColor"
-                d="M160,320h64V224H160Zm192-96v96h64V224Z"
-                class="fa-primary"
-              ></path>
-            </g>
-          </svg>
+        <svg aria-hidden="true" 
+        focusable="false" 
+        data-prefix="fas" 
+        data-icon="sign-in-alt" 
+        class="svg-inline--fa fa-sign-in-alt fa-w-16" 
+        role="img" xmlns="http://www.w3.org/2000/svg" 
+        viewBox="0 0 512 512">
+        <path fill="currentColor" d="M416 448h-84c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h84c17.7 0 32-14.3 32-32V160c0-17.7-14.3-32-32-32h-84c-6.6 0-12-5.4-12-12V76c0-6.6 5.4-12 12-12h84c53 0 96 43 96 96v192c0 53-43 96-96 96zm-47-201L201 79c-15-15-41-4.5-41 17v96H24c-13.3 0-24 10.7-24 24v96c0 13.3 10.7 24 24 24h136v96c0 21.5 26 32 41 17l168-168c9.3-9.4 9.3-24.6 0-34z"></path>
+        </svg>
           <span class="link-text">Log In</span>
         </a>
       </li>
 
       <li class="nav-item">
         <a href="register.php" class="nav-link">
-          <svg
-            aria-hidden="true"
-            focusable="false"
-            data-prefix="fad"
-            data-icon="alien-monster"
-            role="img"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 576 512"
-            class="svg-inline--fa fa-alien-monster fa-w-18 fa-9x"
-          >
-            <g class="fa-group">
-                <path fill="currentColor" d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"></path>
-              <path
-                fill="currentColor"
-                d="M160,320h64V224H160Zm192-96v96h64V224Z"
-                class="fa-primary"
-              ></path>
-            </g>
-          </svg>
+        <svg aria-hidden="true" 
+        focusable="false" 
+        data-prefix="fas" 
+        data-icon="user-plus" 
+        class="svg-inline--fa fa-user-plus fa-w-20" 
+        role="img" 
+        xmlns="http://www.w3.org/2000/svg" 
+        viewBox="0 0 640 512">
+        <path fill="currentColor" d="M624 208h-64v-64c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v64h-64c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h64v64c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16v-64h64c8.8 0 16-7.2 16-16v-32c0-8.8-7.2-16-16-16zm-400 48c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm89.6 32h-16.7c-22.2 10.2-46.9 16-72.9 16s-50.6-5.8-72.9-16h-16.7C60.2 288 0 348.2 0 422.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-41.6c0-74.2-60.2-134.4-134.4-134.4z"></path>
+        </svg>
           <span class="link-text">Register</span>
         </a>
       </li>
@@ -136,20 +117,16 @@
 
       <li class="nav-item">
         <a href="logout.php" class="nav-link">
-          <svg
-            aria-hidden="true"
-            focusable="false"
-            data-prefix="fad"
-            data-icon="space-station-moon-alt"
-            role="img"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 512 512"
-            class="svg-inline--fa fa-space-station-moon-alt fa-w-16 fa-5x"
-          >
-            <g class="fa-group">
-                <path fill="currentColor" d="M313.6 304c-28.7 0-42.5 16-89.6 16-47.1 0-60.8-16-89.6-16C60.2 304 0 364.2 0 438.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-25.6c0-74.2-60.2-134.4-134.4-134.4zM400 464H48v-25.6c0-47.6 38.8-86.4 86.4-86.4 14.6 0 38.3 16 89.6 16 51.7 0 74.9-16 89.6-16 47.6 0 86.4 38.8 86.4 86.4V464zM224 288c79.5 0 144-64.5 144-144S303.5 0 224 0 80 64.5 80 144s64.5 144 144 144zm0-240c52.9 0 96 43.1 96 96s-43.1 96-96 96-96-43.1-96-96 43.1-96 96-96z"></path>
-            </g>
-          </svg>
+        <svg aria-hidden="true" 
+        focusable="false" 
+        data-prefix="fas" 
+        data-icon="sign-out-alt" 
+        class="svg-inline--fa fa-sign-out-alt fa-w-16" 
+        role="img" 4
+        xmlns="http://www.w3.org/2000/svg" 
+        viewBox="0 0 512 512">
+        <path fill="currentColor" d="M497 273L329 441c-15 15-41 4.5-41-17v-96H152c-13.3 0-24-10.7-24-24v-96c0-13.3 10.7-24 24-24h136V88c0-21.4 25.9-32 41-17l168 168c9.3 9.4 9.3 24.6 0 34zM192 436v-40c0-6.6-5.4-12-12-12H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h84c6.6 0 12-5.4 12-12V76c0-6.6-5.4-12-12-12H96c-53 0-96 43-96 96v192c0 53 43 96 96 96h84c6.6 0 12-5.4 12-12z"></path>
+        </svg>
           <span class="link-text">Log Out</span>
         </a>
       </li>
