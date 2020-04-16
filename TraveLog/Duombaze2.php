@@ -20,17 +20,18 @@ class Listing
     {
         $this->name = $name;
     }
+
+    function set_link($link)
+    {
+        $this->link = $link;
+    }
 }
-$conn = mysqli_connect("localhost", "root", "password", "travelog2");
+$conn = mysqli_connect("localhost", "root", "password", "travelog");
 // Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-$sql = "SELECT s.*,p.destinationName FROM listing p INNER JOIN individual s ON p.id = s.indivId WHERE s.indivId LIKE'".$_POST["inputID"] ."'";
- /* $sql = "SELECT s.* FROM 
-(SELECT k.name,i.listingId FROM country_has_listing i LEFT JOIN country k ON k.id= i.countryId) p
- INNER JOIN listing s ON s.id = p.listingId AND s.rating>'" .$_POST["inputKaina"] ."'
-WHERE p.name LIKE '" .$_POST["inputValue"] ."'";  */
+$sql = "SELECT s.*,p.destinationName,p.link FROM listing p INNER JOIN individual s ON p.id = s.indivId WHERE s.indivId LIKE'".$_POST["inputID"] ."'";
 
 $stack  = array();
 $result = $conn->query($sql);
@@ -41,6 +42,7 @@ if ($result->num_rows > 0) {
         $listing->set_checkIn($row["checkIn"]);
         $listing->set_price($row["price"]);
         $listing->set_name($row["destinationName"]);
+        $listing->set_link($row["link"]);
         array_push($stack, $listing);
     }
 } else {
