@@ -3,6 +3,11 @@
   require('config/db.php');
   require("login_session.php");
 
+  $msg = '';
+  $msgClass = '';
+
+  require("login_logic.php");
+  require("register_logic.php");
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,7 +19,7 @@
         <script src="js/jquery.min.js"></script>
         <script src="js/gio.js"></script>
         <?php require('style.php'); ?>
-            <?php require('navbar.php'); ?>
+            
 
                 <!-- Info lenteles salim -->
                 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -106,6 +111,19 @@
     </head>
 
     <body>
+        <div class="container">
+            <?php if($msg != ''): ?>
+                <script type="text/javascript">$('.alert').alert()</script>
+                <div class="alert <?php echo $msgClass; ?> alert-dismissible2 fade show" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="false">&times;</span>
+                    </button>
+                    <?php echo $msg; ?>
+                    
+                </div>
+            <?php endif; ?>
+        </div>
+        <?php require('navbar.php'); ?>
         <input id="textbox" type="text" name="fname">
         <div id="search">Search</div>
         <script src="js/search.js"></script>
@@ -137,7 +155,22 @@
   });
   </script>
   <script src="js/countryselect.js"></script>
+    </div>
 
+    <div id="myModalL" class="modal">
+      <div class="modal-content">
+        <div class="mdl-layout-spacer"><span class="close">&times;</span></div>
+        <?php require("login_popup.php"); ?>
+      </div>
+    </div>
+
+    <div id="myModalR" class="modal">
+      <div class="modal-content">
+        <div class="mdl-layout-spacer"><span class="close">&times;</span></div>
+        <?php require("register_popup.php"); ?>
+      </div>
+    </div>
+
+    <script src="js/modal.js"></script>
   </body>
-  
   </html>

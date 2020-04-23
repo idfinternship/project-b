@@ -54,7 +54,7 @@
 
       <?php if(!$isLoggedIn): ?>
       <li class="nav-item">
-        <a href="login.php" class="nav-link">
+        <a href="#" class="nav-link" id="loginBtn">
         <svg aria-hidden="true" 
         focusable="false" 
         data-prefix="fas" 
@@ -69,7 +69,7 @@
       </li>
 
       <li class="nav-item">
-        <a href="register.php" class="nav-link">
+        <a href="#" class="nav-link" id="registerBtn">
         <svg aria-hidden="true" 
         focusable="false" 
         data-prefix="fas" 
@@ -230,6 +230,7 @@
               ></path>
             </g>
           </svg>
+
           <span class="link-text">Themify</span>
         </a>
       </li>
