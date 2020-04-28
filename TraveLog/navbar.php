@@ -32,7 +32,7 @@
         </a>
       </li>
 
-      <li class="nav-item">
+      <li id = "searchIcon" class="nav-item">
         <a href="#" class="nav-link">
           <svg
             aria-hidden="true"
