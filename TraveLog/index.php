@@ -20,35 +20,10 @@
         <script src="js/gio.js"></script>
         <?php require('style.php'); ?>
             
-
+                <link rel="stylesheet" href="css/search.css">
                 <!-- Info lenteles salim -->
                 <meta name="viewport" content="width=device-width, initial-scale=1">
-                <style>
-                    #search,
-                    #textbox {
-                        position: absolute;
-                        height: 40px;
-                        line-height: 40px;
-                        text-align: center;
-                        color: #cbcbcb;
-                        cursor: pointer;
-                        user-select: none;
-                        box-sizing: border-box;
-                        transition: 1s;
-                        background-color: rgba(110, 110, 110, 0.8);
-                        top: 50px;
-                    }
-                    
-                    #search {
-                        left: 950px;
-                        width: 60px;
-                    }
-                    
-                    #textbox {
-                        left: 800px;
-                        width: 150px;
-                    }
-                    
+                <style>                   
                     #globalArea {
                         height: 100%;
                         width: 100%;
@@ -124,7 +99,7 @@
             <?php endif; ?>
         </div>
         <?php require('navbar.php'); ?>
-        <input id="textbox" type="text" name="fname">
+        <input id="textbox" type="text" name="myCountry" placeholder="Country">
         <div id="search">Search</div>
         <script src="js/search.js"></script>
 
@@ -154,7 +129,10 @@
         });   
   });
   </script>
-  <script src="js/countryselect.js"></script>
+        <script src="js/search.js"></script>
+        <script src="js/searchPress.js"></script>
+        <script src="js/autocomplete.js"></script>
+        <script src="js/countryselect.js"></script>
     </div>
 
     <div id="myModalL" class="modal">
