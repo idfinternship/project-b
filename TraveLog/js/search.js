@@ -1,5 +1,4 @@
 $( "#search" ).click( function () {
-
     var countrydata = document.getElementById("textbox").value;
 
 
@@ -25,3 +24,5 @@ readTextFile("data/countryISO.json", function(text){
       });
 });
 } );
+
+
