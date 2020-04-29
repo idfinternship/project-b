@@ -101,7 +101,6 @@
         <?php require('navbar.php'); ?>
         <input id="textbox" type="text" name="myCountry" placeholder="Country">
         <div id="search">Search</div>
-        <script src="js/search.js"></script>
 
         <div id="globalArea"></div>
         <div id="infoFilter">
