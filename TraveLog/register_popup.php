@@ -15,5 +15,7 @@
         <input type="password" name="password_confirm">
         <br>
         <button type="submit" name="register" class="btn btn-primary">Register</button>
+        <br>
+        <div class="fb-login-button" data-size="large" data-button-type="login_with" data-layout="default" data-auto-logout-link="false" data-use-continue-as="false" data-width="" onlogin="checkLoginState();"></div>
     </form>
 <?php endif; ?>

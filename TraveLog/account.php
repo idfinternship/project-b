@@ -87,24 +87,42 @@
 			}
     	}
     	if(isset($_POST['deleteAccount'])){
-    		$verification_hash = md5(rand(0, 10000));
-			$user['verification_hash'] = $verification_hash;
-			$query = "UPDATE users SET verification_hash='$verification_hash' WHERE id={$user['id']}";
-			if(mysqli_query($conn, $query)){
-				$email = $user['email'];
-				require("mail_delete.php");
-	    		if (PEAR::isError($mail)) {
-	                $msg = $mail->getMessage();
-	                $msgClass = 'alert-danger';
-	            } else {
-	                $msg = 'Check your email to confirm account deletion.';
-	                $msgClass = 'alert-info';
-	            }
-			}
-			else{
-				$msg = "ERROR";
-				$msgClass = 'alert-danger';
-			}
+    		if($_SESSION['isFB'] == true){
+    			$query = "DELETE FROM user_has_country WHERE user_id = '$id'";
+				mysqli_query($conn, $query);
+				$query_delete = "DELETE FROM users WHERE id = '$id'";
+				if(mysqli_query($conn, $query_delete)){
+					$isLoggedIn = false;
+					session_destroy();
+					$msg = "Your account has been deleted!";
+					$msgClass = 'alert-success';
+				}
+				else{
+					$msg = "ERROR";
+					$msgClass = 'alert-danger';
+				}
+    		}
+    		else{
+    			$verification_hash = md5(rand(0, 10000));
+				$user['verification_hash'] = $verification_hash;
+				$query = "UPDATE users SET verification_hash='$verification_hash' WHERE id={$user['id']}";
+				if(mysqli_query($conn, $query)){
+					$email = $user['email'];
+					require("mail_delete.php");
+		    		if (PEAR::isError($mail)) {
+		                $msg = $mail->getMessage();
+		                $msgClass = 'alert-danger';
+		            } else {
+		                $msg = 'Check your email to confirm account deletion.';
+		                $msgClass = 'alert-info';
+		            }
+				}
+				else{
+					$msg = "ERROR";
+					$msgClass = 'alert-danger';
+				}
+    		}
+    		
     	}
     }
     else{
@@ -120,7 +138,7 @@
 	<title>My Account Page</title>
 </head>
 <body>
-	
+	<script src="js/fb.js"></script>
 	<div class="container">
         <?php if($msg != ''): ?>
             <div class="alert <?php echo $msgClass; ?>"><?php echo $msg; ?></div>
@@ -151,20 +169,22 @@
 			</form>
 			<br>
 
-			<label>Change email</label>
-			<form method="POST" action="<?php $_SERVER['PHP_SELF']; ?>" class="form-control">
-				<label>New Email:</label>
-				<input type="text" name="email" value="<?php echo $user['email'] ?>">
-				<button type="submit" name="changeEmail" class="btn btn-primary">Change</button>
-			</form>
-			<br>
+			<?php if($_SESSION['isFB'] == false): ?>
+				<label>Change email</label>
+				<form method="POST" action="<?php $_SERVER['PHP_SELF']; ?>" class="form-control">
+					<label>New Email:</label>
+					<input type="text" name="email" value="<?php echo $user['email'] ?>">
+					<button type="submit" name="changeEmail" class="btn btn-primary">Change</button>
+				</form>
+				<br>
 
-			<label>Change password</label>
-			<form method="POST" action="<?php $_SERVER['PHP_SELF']; ?>" class="form-control">
-				<label>Click this button to change your password:</label>
-				<button type="submit" name="changePassword" class="btn btn-primary">Change</button>
-			</form>
-			<br>
+				<label>Change password</label>
+				<form method="POST" action="<?php $_SERVER['PHP_SELF']; ?>" class="form-control">
+					<label>Click this button to change your password:</label>
+					<button type="submit" name="changePassword" class="btn btn-primary">Change</button>
+				</form>
+				<br>
+			<?php endif; ?>
 
 			<label>Delete account</label>
 			<form method="POST" action="<?php $_SERVER['PHP_SELF']; ?>" class="form-control">
@@ -174,5 +194,21 @@
 			</form>
 		</div>
 	<?php endif; ?>
+
+	<div id="myModalL" class="modal">
+      <div class="modal-content">
+        <div class="mdl-layout-spacer"><span class="close">&times;</span></div>
+        <?php require("login_popup.php"); ?>
+      </div>
+    </div>
+
+    <div id="myModalR" class="modal">
+      <div class="modal-content">
+        <div class="mdl-layout-spacer"><span class="close">&times;</span></div>
+        <?php require("register_popup.php"); ?>
+      </div>
+    </div>
+
+    <script src="js/modal.js"></script>
 </body>
 </html>

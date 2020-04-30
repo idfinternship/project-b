@@ -241,6 +241,7 @@ main {
   padding: 20px;
   border: 1px solid #888;
   width: 40%;
+  font-family: 'Open Sans';
 }
 
 
@@ -268,3 +269,8 @@ main {
   border:1px solid transparent;
   border-radius:.25rem
 }
+
+.fb-login-button{
+  margin-top: 20px;
+}
+
