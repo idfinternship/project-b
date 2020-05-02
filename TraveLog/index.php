@@ -15,23 +15,28 @@
         <meta charset="UTF-8">
         <title>TraveLog test</title>
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-        <link rel="stylesheet" href="css/style.css">
-        <link rel="stylesheet" href="css/StyleFilters.css">
-        <link rel="stylesheet" href="css/StyleListings.css">
-        <link rel="stylesheet" href="css/search.css">
+        <link rel="stylesheet" href="/resources/demos/style.css">
         <script src="js/jquery-1.12.4.js"></script>
         <script src="js/jquery-ui.js"></script>
         <script src="js/three.min.js"></script>
         <script src="js/gio.js"></script>
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/StyleFilters.css">
+        <link rel="stylesheet" href="css/StyleListings.css">
+        <link rel="stylesheet" href="css/search.css">
         <link rel="stylesheet" href="datetimepicker/jquery.datetimepicker.min.css"/>
         <script src="https://cdn.jsdelivr.net/momentjs/2.14.1/moment.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         <script src="datetimepicker/jquery.datetimepicker.full.js"></script>
         <?php require('style.php'); ?>
-        <?php require('navbar.php'); ?>
-
-        <body>
-        <script src="js/fb.js"></script>
+            <?php require('navbar.php'); ?>
+    <body>
+    
+<?php
+include 'GlobeStyle.html';
+?>
+</div>
+<script src="js/fb.js"></script>
         <div id="fb-root"></div>
         <script async defer crossorigin="anonymous" src="https://connect.facebook.net/lt_LT/sdk.js#xfbml=1&version=v6.0&appId=558173124816363&autoLogAppEvents=1"></script>
         <div class="container">
@@ -46,21 +51,14 @@
                 </div>
             <?php endif; ?>
         </div>
-        <?php require('navbar.php'); ?>
-        <input id="textbox" type="text" name="myCountry" placeholder="Country">
-        <div id="search">Search</div>
 
-      <?php
-      include 'GaublioStilius.html';
-      ?>
-
-    <script src="js/search.js"></script>
+     <script src="js/search.js"></script>
     <script src="js/searchPress.js"></script>
     <script src="js/autocomplete.js"></script>
-    <script src="js/countryselect.js"></script>
-    <script src="js/CloseButton.js"></script>
+  <script src="js/CloseButton.js"></script>
+  <script src="js/countryselect.js"></script>
 
-<div id="myModalL" class="modal">
+  <div id="myModalL" class="modal">
       <div class="modal-content">
         <div class="mdl-layout-spacer"><span class="close">&times;</span></div>
         <?php require("login_popup.php"); ?>
@@ -74,5 +72,6 @@
       </div>
     </div>
     <script src="js/modal.js"></script>
+
   </body>
   </html>
