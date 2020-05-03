@@ -26,10 +26,11 @@ $( function() {
         slide: function( event, ui ) {
             localStorage.setItem('DurationFilter0', ui.values[0]);
             localStorage.setItem('DurationFilter1', ui.values[1]);
-        $( "#amount" ).val( ui.values[ 0 ] + " - " + ui.values[ 1 ] );
+        $( "#amountduration" ).val( ui.values[ 0 ] + " - " + ui.values[ 1 ] );
+        $(".p1").text('Duration: ');
         }
         });
-        $( "#amount" ).val($( ".slider-range1" ).slider( "values", 0 ) +
+        $( "#amountduration" ).val($( ".slider-range1" ).slider( "values", 0 ) +
         " - " + $( ".slider-range1" ).slider( "values", 1 ) );
         });
 
@@ -42,10 +43,11 @@ $( function() {
           slide: function( event, ui ) {
               localStorage.setItem('priceFilter0', ui.values[0]);
               localStorage.setItem('priceFilter1', ui.values[1]);
-          $( "#amount1" ).val( ui.values[ 0 ] + " - " + ui.values[ 1 ] );
+          $( "#amountprice" ).val( ui.values[ 0 ] + " - " + ui.values[ 1 ] );
+          $(".p1").text('Price: ');
           }
           });
-          $( "#amount1" ).val($( ".slider-range2" ).slider( "values", 0 ) +
+          $( "#amountprice" ).val($( ".slider-range2" ).slider( "values", 0 ) +
           " - " + $( ".slider-range2" ).slider( "values", 1 ) );
           });
 
