@@ -38,7 +38,7 @@
                       border-color: #2196F3
                     }
 
-                    #filter,#individualfilter {
+                    #filter, #individualfilter {
                       position: absolute;
                       left: 60%;
                       top: 30%;
@@ -132,7 +132,15 @@
                     top: -30%;
                     font-size: 12px;
                   }
-                  .btn {
+                  .p2{
+                    position: absolute;
+                    left: 25%;
+                    top: 5%;
+                    color: white;
+                    font-weight: bold;
+                    font-size: 15px;
+                  }
+                  .btna {
                     position: absolute;
                     left: 1%;
                     top: 1.5%;
@@ -140,13 +148,13 @@
                     height: 50px;
                     background: url("FilterFirst.png") no-repeat;
                 }
-                .btn:hover {
+                .btna:hover {
                     width: 50px;
                     height: 50px;
                     background: url("FilterSecond.png") no-repeat;
                 }
 
-                .btn1 {
+                .btna1 {
                     position: absolute;
                     border: none;
                     left: 1%;
@@ -155,7 +163,7 @@
                     height: 50px;
                     background: url("individualFilter.png") no-repeat;
                 }
-                .btn1:hover {
+                .btna1:hover {
                     width: 50px;
                     height: 50px;
                     background: url("individualFilterSecond.png") no-repeat;
