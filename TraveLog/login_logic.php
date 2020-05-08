@@ -18,6 +18,7 @@
                             $msgClass = 'alert-success';
                             $_SESSION['isLoggedIn'] = true;
                             $_SESSION['userID'] = $user['id'];
+                            $_SESSION['isFB'] = false;
                             header('Location: '. ROOT_URL .'index.php');
                         }
                         else{

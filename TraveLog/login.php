@@ -24,6 +24,7 @@
                         $msg = "Success!";
                         $_SESSION['isLoggedIn'] = true;
                         $_SESSION['user'] = $user;
+                        $_SESSION['isFB'] = false;
                         header('Location: '. ROOT_URL .'');
                     }
                     else{
