@@ -1,4 +1,4 @@
-                  #globalArea {
+﻿                  #globalArea {
                     height: 100%;
                     width: 100%;
                   }
@@ -17,6 +17,16 @@
                     background-color: rgba(35,35,46, 0.8);
                     display: none;
                   }
+
+                    .textid{
+                      color: white;
+                    }
+                    .textid:hover{
+                      font-weight: bold;
+                      text-decoration: underline;
+                      cursor: pointer;
+                    }
+
                   .table{
                   font-size: 15px;
                   width: 100%;

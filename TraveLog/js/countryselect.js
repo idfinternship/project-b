@@ -1,6 +1,6 @@
 ﻿var container = document.getElementById("globalArea");
 var controller = new GIO.Controller(container);
-controller.setInitCountry("LT"); // Pradinė šalis
+controller.setInitCountry("LT"); // use the onCountryPicked() to set callback when clicked country changed
 controller.onCountryPicked(callfirst);
 
 $("#button_1").click(function(e) {

@@ -24,5 +24,3 @@ readTextFile("data/countryISO.json", function(text){
       });
 });
 } );
-
-

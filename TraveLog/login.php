@@ -6,7 +6,6 @@
     
 
     $msg = '';
-    $msgClass = '';
 
     if(!$isLoggedIn){
         if(isset($_POST['login'])){
@@ -22,41 +21,28 @@
                 if($user != false){
                     $password_hash = password_hash($password, PASSWORD_DEFAULT);
                     if(password_verify($password, $user['password'])){
-                        if($user['active'] == 1){
-                            $msg = "Success!";
-                            $msgClass = 'alert-success';
-                            $_SESSION['isLoggedIn'] = true;
-                            $_SESSION['userID'] = $user['id'];
-                            $_SESSION['isFB'] = false;
-                            header('Location: '. ROOT_URL .'index.php');
-                        }
-                        else{
-                            $msg = "Account is not verified. Please check your email: ".$user['email'];
-                            $msgClass = 'alert-danger';
-                        }
-                        
+                        $msg = "Success!";
+                        $_SESSION['isLoggedIn'] = true;
+                        $_SESSION['user'] = $user;
+                        header('Location: '. ROOT_URL .'');
                     }
                     else{
                         $msg = 'Wrong username or password';
-                        $msgClass = 'alert-danger';
                     }
                 }
                 else{
                     $msg = 'Wrong username or password';
-                    $msgClass = 'alert-danger';
                 }
-            }
-            else{
-                $msg = 'Please enter all fields';
-                $msgClass = 'alert-danger';
+
+
+                mysqli_free_result($result);
+                mysqli_close($conn);
             }
         }
     }
     else{
         $msg = "You are already logged in!";
-        $msgClass = 'alert-warning';
     }
-    mysqli_close($conn);
  ?>
 <!DOCTYPE html>
 <html>
@@ -66,19 +52,20 @@
 </head>
 <body>
     <?php require('navbar.php'); ?>
+    <?php if($msg != ''){
+            echo $msg;
+        } ?>
     <?php if(!$isLoggedIn): ?>
         <div class="container">
-            <form method="POST" action="">
+            <form method="POST" action="" class="form-control">
                 <label>Username:</label>
                 <input type="text" name="username">
                 <br>
                 <label>Password:</label>
                 <input type="password" name="password">
                 <br>
-                <button type="submit" name="login" class="btn btn-primary">Log In</button>
+                <button type="submit" name="login">Log In</button>
             </form>
-
-            
         </div>
     <?php endif; ?>
 </body>
