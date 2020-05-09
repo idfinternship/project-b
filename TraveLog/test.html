@@ -2,56 +2,64 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>facebook api test</title>
+	<title>test</title>
+	<?php require('style.php'); ?>
 </head>
 <body>
-	<script>
-	    window.fbAsyncInit = function() {
-	    	FB.init({
-	      	appId      : '887609555034388',
-	      	cookie     : true,
-	      	xfbml      : true,
-	      	version    : 'v6.0'
-	    	});
-	    	
-			FB.getLoginStatus(function(response) {
-			    statusChangeCallback(response);
-			});
-	      
-	  	};
+	<div class="table-responsive table-dark">
 
-	    (function(d, s, id){
-		    var js, fjs = d.getElementsByTagName(s)[0];
-		    if (d.getElementById(id)) {return;}
-		    js = d.createElement(s); js.id = id;
-		    js.src = "https://connect.facebook.net/en_US/sdk.js";
-		    fjs.parentNode.insertBefore(js, fjs);
-		}(document, 'script', 'facebook-jssdk'));
+  <!--Table-->
+  <table class="table">
 
-		function statusChangeCallback(response){
-			if(response.status === 'connected'){
-				console.log('Logged in and authenticated');
-			} else {
-				console.log('Not authenticated');
-			}
-		}
+    <!--Table head-->
+    <thead>
+      <tr>
+        <th class="th-lg">Lorem ipsum dolor</th>
+      </tr>
+    </thead>
+    <!--Table head-->
 
-		function checkLoginState() {
-			FB.getLoginStatus(function(response) {
-				statusChangeCallback(response);
-			});
-		}
+    <!--Table body-->
+    <tbody>
+      <tr>
+        <td>Lorem ipsum dolor</td>
+      </tr>
+      <tr>
+        <td>Lorem ipsum dolor</td>
+      </tr>
+      <tr>
+        <td>Lorem ipsum dolor</td>
+      </tr>
+      <tr>
+        <td>Lorem ipsum dolor</td>
+      </tr>
+      <tr>
+        <td>Lorem ipsum dolor</td>
+      </tr>
+      <tr>
+        <td>Lorem ipsum dolor</td>
+      </tr>
+      <tr>
+        <td>Lorem ipsum dolor</td>
+      </tr>
+      <tr>
+        <td>Lorem ipsum dolor</td>
+      </tr>
+      <tr>
+        <td>Lorem ipsum dolor</td>
+      </tr>
+      <tr>
+        <td>Lorem ipsum dolor</td>
+      </tr>
+      <tr>
+        <td>Lorem ipsum dolor</td>
+      </tr>
+    </tbody>
+    <!--Table body-->
 
-		function logout(){
-			FB.logout(function(response){
+  </table>
+  <!--Table-->
 
-			})
-		}
-	</script>
-	<div id="fb-root"></div>
-	<script async defer crossorigin="anonymous" src="https://connect.facebook.net/lt_LT/sdk.js#xfbml=1&version=v6.0&appId=558173124816363&autoLogAppEvents=1"></script>
-
-	<div class="fb-login-button" data-size="large" data-button-type="login_with" data-layout="default" data-auto-logout-link="false" data-use-continue-as="false" data-width="" onlogin="checkLoginState();"></div>
-
+</div>
 </body>
 </html>
