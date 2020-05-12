@@ -9,9 +9,11 @@
         <input type="text" name="email">
         <br>
         <label>Password:</label>
+        <br>
         <input type="password" name="password">
         <br>
         <label>Confirm Password:</label>
+        <br>
         <input type="password" name="password_confirm">
         <br>
         <button type="submit" name="register" class="btn btn-primary">Register</button>

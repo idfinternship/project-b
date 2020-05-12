@@ -135,6 +135,9 @@
 <html>
 <head>
 	<?php require('style.php'); ?>
+	<script src="js/jquery-1.12.4.js"></script>
+    <script src="js/jquery-ui.js"></script>
+	<link rel="stylesheet" href="css/StyleListings.css">
 	<title>My Account Page</title>
 </head>
 <body>
@@ -146,13 +149,18 @@
     </div>
 	<?php require('navbar.php'); ?>
     <?php if($isLoggedIn): ?>
+    	<div id="countryList">
+			    <strong>
+			        <div id="title">Selected Countries List</div>
+			    </strong>
+			    <div class="table-responsive">
+			    	<table class = "table table-dark table-hover">
+			        	<tbody id="testas"></tbody>
+			    	</table>
+			    </div>
+			</div>
+			
 	    <div class="container">
-	    	<h2>View Selected Countries</h2>
-	    	<form action="selected_countries.php" class="form-control">
-		    	<label>Press this button to view your selected countries:</label>
-		    	<button class="btn btn-primary">Select</button>
-	    	</form>
-
 	    	<h2>Select Countries</h2>
 	    	<form action="select_countries_globe.php" class="form-control">
 		    	<label>Press this button to select countries you have been to:</label>
@@ -193,6 +201,9 @@
 				<br>
 			</form>
 		</div>
+
+	
+
 	<?php endif; ?>
 
 	<div id="myModalL" class="modal">
@@ -209,6 +220,7 @@
       </div>
     </div>
 
+    <script src="js/countryprint.js"></script>
     <script src="js/modal.js"></script>
 </body>
 </html>

@@ -28,22 +28,22 @@ if(!$isLoggedIn){
                             if(!mysqli_fetch_assoc($equery) && !mysqli_fetch_assoc($uquery)){
                                 $password_hash = password_hash($password, PASSWORD_DEFAULT);
                                 $verification_hash = md5(rand(0, 10000));
-                                $query = "INSERT INTO users(username, password, email, verification_hash) VALUES('$username', '$password_hash', '$email', '$verification_hash')";
-                                
-                                if(mysqli_query($conn, $query)){
-                                    require('mail.php');
+                                require('mail.php');
                                     if (PEAR::isError($mail)) {
                                         $msg = $mail->getMessage();
                                         $msgClass = 'alert-danger';
                                     } else {
-                                        $msg = 'Registered! Check your email to verify your account.';
-                                        $msgClass = 'alert-success';
+                                        $query = "INSERT INTO users(username, password, email, verification_hash) VALUES('$username', '$password_hash', '$email', '$verification_hash')";
+                                        if(mysqli_query($conn, $query)){
+                                            $msg = 'Registered! Check your email to verify your account.';
+                                            $msgClass = 'alert-success';
+                                        } else {
+                                            $msg = 'ERROR: '. mysqli_error($conn);
+                                            $msgClass = 'alert-danger';
+                                        }
+                                        
                                     }
-                                    
-                                } else {
-                                    $msg = 'ERROR: '. mysqli_error($conn);
-                                    $msgClass = 'alert-danger';
-                                }
+                                
                             }
                             else{
                                 $msg = 'Username or email already exists';

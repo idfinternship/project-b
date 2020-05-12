@@ -93,11 +93,33 @@ cursor: pointer;
   color: white;
   font-size: 50px;
   background-color: rgba(35,35,46, 0.8);
-  display: none;
+  display: block;
   overflow: auto;
 }
 #title {
   width: 100%;
   margin-top:20px;
   margin-bottom:20px;
+}
+
+#countryList {
+  position: relative;
+  float: right;
+  width: 45%;
+  line-height: 50px;
+  text-align: center;
+  color: #b6b6b6;
+  font-size: 50px;
+  background-color: rgba(35,35,46, 0.8);
+  display: block;
+  overflow: auto;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.form-control {
+  width: 50%;
+  background-color: #343a40;
+  color: white;
+  border: none;
 }

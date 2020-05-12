@@ -1,12 +1,14 @@
 var container = document.getElementById("globalArea");
 var controller = new GIO.Controller(container);
-var countries = new Array();
 controller.setInitCountry("LT"); // use the onCountryPicked() to set callback when clicked country changed
+controller.setStyle("blueInk");
+var countries = new Array();
+getCountries();
+
 controller.onCountryPicked(callfirst);
 
 function callfirst(selectedCountry)
 {	
-	console.log(countries.includes(selectedCountry));
 	var index = -1;
 	for(var i = 0; i < countries.length; i++) {
 	    if (countries[i].name == selectedCountry.name) {
@@ -21,17 +23,31 @@ function callfirst(selectedCountry)
 		countries.splice(index, 1);
 	}
 
-	console.log(selectedCountry);
-	$("#selectedList").fadeIn(1000);
-    document.getElementById("testas").innerText = ''; // gauna elementą pagal jo ID
+    printCountries();
+}
 
+function printCountries(){
 
-    $('#infoTHead').fadeIn(10);
 	let testas = document.getElementById("testas");
+	testas.innerText = '';
     for (var i = 0; i < countries.length; i++) {
-    	testas.insertAdjacentHTML("beforeend", "<tr> <td align='left' class='align-middle'> <p>" + countries[i].name 
-    		+ " </p></td></tr>");
+    	testas.insertAdjacentHTML("beforeend", "<tr> <td align='left' class='align-middle' class='th-lg'> <p>"
+    		+ countries[i].name + " </p></td></tr>");
     }
+    if(countries.length == 0){
+    	testas.insertAdjacentHTML("beforeend", "<tr> <td align='left' class='align-middle' class='th-lg'> <p> You haven\'t selected any countries. </p></td></tr>");
+    }
+}
+
+function getCountries(){
+	$.getJSON('get_countries.php', function(e){
+		for(var i = 0; i < e.length; i++){
+			countries.push(e[i]);
+		}
+	})
+	.always(function(){
+		printCountries();
+	});
 }
 
 
@@ -39,19 +55,20 @@ $( "#saveCountries" ).click( function () {
 	var json = JSON.stringify(countries);
 	console.log(json);
     $.post('save_countries.php', {json: json}).done(function() {
-    	console.log( "success" );
+    	var successmsg = document.getElementsByClassName('alert-dismissible2')[0];
+    	successmsg.style.display = "block";
   	});
 } );
 
 $.ajax({
 
-    url: "data/sampleData.json",
+    url: "data/selectionJSON.json",
     type: "GET",
     contentType: "application/json; charset=utf-8",
     async: true,
     dataType: "json",
     success: function(inputData) {
+    	//controller.addData( inputData );
         controller.init();
-        //gražina gio.js informaciją apie šalis
     }
 });
