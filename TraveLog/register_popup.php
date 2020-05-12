@@ -1,20 +1,19 @@
 <?php if(!$isLoggedIn): ?>
-    <h3>Register To TraveLog</h3>
+    <h3 style="text-align: center;">Register to TraveLog</h3>
     <br>
     <form method="POST" action="<?php $_SERVER['PHP_SELF']; ?>">
-        <label>Username:</label>
-        <input type="text" name="username">
+        <label style="width: 26%;">Username:</label>
+        <input class="popupTextBox" type="text" name="username">
         <br>
-        <label>Email:</label>
-        <input type="text" name="email">
+        <label style="width: 26%;">Email:</label>
+        <input class="popupTextBox" type="text" name="email">
         <br>
-        <label>Password:</label>
+        <label style="width: 26%;">Password:</label>
+        <input class="popupTextBox" type="password" name="password">
         <br>
-        <input type="password" name="password">
+        <label style="width: 26%;">Confirm Password:</label>
+        <input class="popupTextBox" type="password" name="password_confirm">
         <br>
-        <label>Confirm Password:</label>
-        <br>
-        <input type="password" name="password_confirm">
         <br>
         <button type="submit" name="register" class="btn btn-primary">Register</button>
         <br>
