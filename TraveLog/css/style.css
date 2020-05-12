@@ -9,10 +9,31 @@
 }
 
 body {
-  background-color: #23232e;
   color: #b6b6b6;
+  background-color: white;
   margin: 0;
   padding: 0;
+  /* background-size: 100% 100% */
+}
+
+.btn-primary {
+  position: absolute;
+  color: #b6b6b6;
+  background-color: #23232e;
+  border-color: #000;
+  width: 50%;
+  /* left:30% ; */
+}
+
+.popupTextBox{
+  width: 60%;
+  border-color:#000;
+  color: white;
+  background: #2f3640;
+  height: 40px;
+  border-radius: 15px;
+  padding: 10px;
+  text-align: center;
 }
 
 body::-webkit-scrollbar {
@@ -236,12 +257,12 @@ main {
 
 /* Modal Content */
 .modal-content {
+  background-color: #23232e;
   margin: auto;
   padding: 20px;
   border: 1px solid #888;
   width: 40%;
   font-family: 'Open Sans';
-  background-color: #23232e;
 }
 
 
