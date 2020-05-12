@@ -1,14 +1,13 @@
 <?php if(!$isLoggedIn): ?>
-    <h3>Log In To TraveLog</h3>
+    <h3 style="text-align: center;">Log In to TraveLog</h3>
     <br>
     <form method="POST" action="<?php $_SERVER['PHP_SELF']; ?>">
-        <label>Username:</label>
+        <label style="width: 26%;">Username:</label>
+        <input class="popupTextBox" type="text" name="username">
         <br>
-        <input type="text" name="username">
+        <label style="width: 26%;">Password:</label>
+        <input class="popupTextBox" type="password" name="password">
         <br>
-        <label>Password:</label>
-        <br>
-        <input type="password" name="password">
         <br>
         <button type="submit" name="login" class="btn btn-primary">Log In</button>
         <br>
