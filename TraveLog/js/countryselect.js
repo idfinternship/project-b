@@ -1,5 +1,6 @@
 ﻿var container = document.getElementById("globalArea");
 var controller = new GIO.Controller(container);
+controller.setTransparentBackground( true );
 controller.setInitCountry("LT"); // use the onCountryPicked() to set callback when clicked country changed
 controller.onCountryPicked(callfirst);
 
