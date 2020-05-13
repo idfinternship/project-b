@@ -19,7 +19,7 @@
     <script src="js/jquery-1.12.4.js"></script>
     <script src="js/jquery-ui.js"></script>
     <script src="js/three.min.js"></script>
-    <script src="js/gio.js"></script>
+    <script src="js/gio.min.js"></script>
     <link rel="stylesheet" href="css/StyleFilters.css">
     <link rel="stylesheet" href="css/StyleListings.css">
     <link rel="stylesheet" href="css/search.css">
