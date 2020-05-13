@@ -1,6 +1,12 @@
 ﻿#globalArea {
   height: 100%;
   width: 100%;
+  background-size: 100% 100%;
+}
+body {
+  background-image: url("galaxy.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
 }
 
 #infoFilter {
