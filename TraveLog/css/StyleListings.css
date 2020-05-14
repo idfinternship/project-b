@@ -4,9 +4,7 @@
   background-size: 100% 100%;
 }
 body {
-  background-image: url("galaxy.jpg");
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
+  
 }
 
 #infoFilter {
@@ -111,7 +109,7 @@ cursor: pointer;
 #countryList {
   position: relative;
   float: right;
-  width: 45%;
+  width: 40%;
   line-height: 50px;
   text-align: center;
   color: #b6b6b6;
@@ -124,8 +122,14 @@ cursor: pointer;
 }
 
 .form-control {
-  width: 50%;
+  width: 55%;
+  height:auto;
   background-color: #343a40;
   color: white;
   border: none;
+}
+
+.container{
+  margin-left:100px;
+  max-width: calc(100% - 100px);
 }

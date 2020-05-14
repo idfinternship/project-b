@@ -149,22 +149,23 @@
     </div>
 	<?php require('navbar.php'); ?>
     <?php if($isLoggedIn): ?>
-    	<div id="countryList">
+    	
+			
+	    <div class="container">
+	    	<div id="countryList">
 			    <strong>
 			        <div id="title">Selected Countries List</div>
 			    </strong>
-			    <div class="table-responsive">
+			    <div class="table-responsive text-fix">
 			    	<table class = "table table-dark table-hover">
 			        	<tbody id="testas"></tbody>
 			    	</table>
 			    </div>
 			</div>
-			
-	    <div class="container">
 	    	<h2>Select Countries</h2>
 	    	<form action="select_countries_globe.php" class="form-control">
 		    	<label>Press this button to select countries you have been to:</label>
-		    	<button class="btn btn-primary">Select</button>
+		    	<button class="btn btn-primary" style="width: 15%; margin-left: 5px; min-width: 5em">Select</button>
 	    	</form>
 		    <br>
 
@@ -172,8 +173,8 @@
 			<label>Change username</label>
 			<form method="POST" action="<?php $_SERVER['PHP_SELF']; ?>" class="form-control">
 				<label>Username:</label>
-	            <input type="text" name="username" value="<?php echo $user['username'] ?>">
-	            <button type="submit" name="changeUsername" class="btn btn-primary">Change</button>
+	            <input type="text" name="username" class="accountTextBox" value="<?php echo $user['username'] ?>">
+	            <button type="submit" name="changeUsername" class="btn btn-primary" style="width: 15%; margin-left: 5px; min-width: 5em">Change</button>
 			</form>
 			<br>
 
@@ -181,15 +182,15 @@
 				<label>Change email</label>
 				<form method="POST" action="<?php $_SERVER['PHP_SELF']; ?>" class="form-control">
 					<label>New Email:</label>
-					<input type="text" name="email" value="<?php echo $user['email'] ?>">
-					<button type="submit" name="changeEmail" class="btn btn-primary">Change</button>
+					<input type="text" name="email" class="accountTextBox" style="width: 250px" value="<?php echo $user['email'] ?>">
+					<button type="submit" name="changeEmail" class="btn btn-primary" style="width: 15%; margin-left: 5px; min-width: 5em">Change</button>
 				</form>
 				<br>
 
 				<label>Change password</label>
 				<form method="POST" action="<?php $_SERVER['PHP_SELF']; ?>" class="form-control">
 					<label>Click this button to change your password:</label>
-					<button type="submit" name="changePassword" class="btn btn-primary">Change</button>
+					<button type="submit" name="changePassword" class="btn btn-primary" style="width: 15%; margin-left: 5px; min-width: 5em">Change</button>
 				</form>
 				<br>
 			<?php endif; ?>
@@ -197,7 +198,7 @@
 			<label>Delete account</label>
 			<form method="POST" action="<?php $_SERVER['PHP_SELF']; ?>" class="form-control">
 				<label>Click this button to delete your account:</label>
-				<button type="submit" name="deleteAccount" class="btn btn-primary">Delete</button>
+				<button type="submit" name="deleteAccount" class="btn btn-primary" style="width: 15%; margin-left: 5px; min-width: 5em">Delete</button>
 				<br>
 			</form>
 		</div>

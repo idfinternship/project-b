@@ -20,7 +20,7 @@
 	
 </head>
 <body>
-	<div class="container">
+	
         <script type="text/javascript">$('.alert').alert()</script>
         <div class="alert alert-success alert-dismissible2 fade show" role="alert" style="display:none">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -28,7 +28,7 @@
             </button>
             Success!
         </div>
-    </div>
+    
 	<?php require("navbar.php") ?>
 	
 	<div id="globalArea"></div>
@@ -41,7 +41,7 @@
 	    	<table class = "table table-dark table-hover">
 	        	<tbody id="testas"></tbody>
 	    	</table>
-	    	<button class="btn btn-primary" id="saveCountries">Save</button>
+	    	<button class="btn btn-primary" id="saveCountries" style="margin-left: auto; margin-right: auto;">Save</button>
 	    </div>
 	</div>
 
