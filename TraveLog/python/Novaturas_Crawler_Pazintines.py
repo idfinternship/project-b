@@ -198,17 +198,14 @@ def main(word1=first_arg,word2=secon_arg,word3=third_arg):
                     for v in contentList
                     ]
     
-    if(word3 == "FIRST"):
-        with open(word2, 'w', encoding='utf-8') as f:
-            json.dump({"Data":contentInfo}, f, ensure_ascii=False, indent=4)
-    else:
-        with open(word2) as f:
-            data = json.load(f) 
-            # appending data to emp_details  
-            for i in range(0,len(contentInfo)):
-                data['Data'].append(contentInfo[i])
-        with open(word2,'w') as f: 
-            json.dump(data, f, ensure_ascii=False, indent=4)
+    
+    with open(word2) as f:
+        data = json.load(f) 
+        # appending data to emp_details  
+        for i in range(0,len(contentInfo)):
+            data['Data'].append(contentInfo[i])
+    with open(word2,'w') as f: 
+        json.dump(data, f, ensure_ascii=False, indent=4)
     
 
 if __name__ == "__main__":

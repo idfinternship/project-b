@@ -23,7 +23,11 @@ import sys
 first_arg = sys.argv[1]
 def main(word1=first_arg):
     link=word1
-    number = GetPageNumber(link)
+    number=""
+    try:
+        number = GetPageNumber(link)
+    except:
+        number = "1"
     print(number)
 
 if __name__ == "__main__":

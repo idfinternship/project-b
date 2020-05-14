@@ -38,5 +38,7 @@ python3 "$1" "$page2" "$2" "N" &
 python3 "$1" "$page3" "$2" "N" &
 python3 "$1" "$page4" "$2" "N" &
 python3 "$1" "$page5" "$2" "N" &
-python3 "$1" "$page6" "$2" "LAST"
+python3 "$1" "$page6" "$2" "LAST"&
+
+wait
 echo "Baigta"
