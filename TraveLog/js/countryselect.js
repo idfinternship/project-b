@@ -1,38 +1,55 @@
 ﻿var container = document.getElementById("globalArea");
 var controller = new GIO.Controller(container);
 controller.setTransparentBackground( true );
-controller.setInitCountry("LT"); // use the onCountryPicked() to set callback when clicked country changed
-controller.onCountryPicked(callfirst);
+controller.setInitCountry("LT"); // pirminė šalis
+controller.onCountryPicked(callfirst); // pirmas iškviečiamas metodas
 
-$("#button_1").click(function(e) {
+$("#button_1").click(function(e) { // metodas, kuris iškviečia listing'us, nustačius filtrus;
     e.preventDefault();
     Iskvietimas();
     });
 
-$("#button_2").click(function(e) {
+$("#button_2").click(function(e) { // metodas, sukuriantis mygtuką, kuris iškviečia paprastų listing filtrų lentelę (div'ą);
     e.preventDefault();
     $("#filter").fadeIn(1000);
 });
 
-$("#button_3").click(function(e) {
+$("#button_3").click(function(e) { // metodas, sukuriantis mygtuką, kuris iškviečia individual listing filtrų  lentelę (div'ą);
     e.preventDefault();
     $("#individualfilter").fadeIn(1000);
 });
 
-$("#button_4").click(function(e) {
+$("#button_4").click(function(e) { // metodas, kuris iškviečia listing'us, nustačius filtrus individual listingam;
     e.preventDefault();
+    IskvietimasIndividual();    
+});
+
+function IskvietimasIndividual(){
     var price1 = localStorage.getItem('priceFilter0');
     var price2 = localStorage.getItem('priceFilter1');
-    var ID = localStorage.getItem('inputID');
     var Laikas = localStorage.getItem('Laikas');
     var LaikasOut = localStorage.getItem('LaikasOut');
-   // $('#testas').fadeOut(1);
-   // $("#infoFilter").fadeIn(1000);
-   // $('#testas').fadeIn(1000);
-   // document.getElementById("button_2").style.display = 'none';
-  //  $('#infoTHead').fadeIn(1);
-  //  document.getElementById("button_3").style.display = '';
-  //  document.getElementById("infoTHead").innerHTML ="<tr><th><font size='4' color='#ff0000'>Check In</font></th><th>Check Out</th><th>Price</th><th>Before price</th><th>Savings</th><th>Link</th></tr>";
+    var ID = localStorage.getItem('inputID'); // lokalūs kintamieji
+    if (!price1) // gražina false jeigu yra kokia nors reikšmė
+    {
+        price1 = 10;
+    }
+    if (!price2) // gražina false jeigu yra kokia nors reikšmė
+    {
+        price2 = 5000;
+    }
+    if (!Laikas) // gražina false jeigu yra kokia nors reikšmė
+    {
+        Laikas = "2010-05-05"; 
+    }
+    if (!LaikasOut) // gražina false jeigu yra kokia nors reikšmė
+    {
+        LaikasOut = "2040-05-05";
+    }
+    console.log(Laikas);
+    console.log(LaikasOut);
+    console.log(price1);
+    console.log(price2);
     $.ajax({
         url: "Duombaze2.php",
         type: "POST",
@@ -44,37 +61,55 @@ $("#button_4").click(function(e) {
             'checkOut': LaikasOut,
         },
         success: function(inputData) {
-                document.getElementById("button_4").onclick = null;
-                document.getElementById("testas").innerText = "";
+            console.log(inputData);
+                document.getElementById("testas").innerText = ""; // nedubliuoja duomenų
                 let testas = document.getElementById("testas");
-                let test = JSON.parse(inputData);
+                if (inputData.search("nulis") != -1) {
+                    testas.insertAdjacentText("beforeend", "no matches found"); // jeigu duombazėje nėra duomenų apie šalį;
+                } else{
+                    let test = JSON.parse(inputData);
                  for (var i = 0; i < test.length; i++) {
                      if (!test[i].beforePrice){ //gražina false jeigu yra bent kažkokia reikšmė
                          test[i].beforePrice = "-";
                          test[i].savings = "-";
                      }
-                    testas.insertAdjacentHTML("beforeend", "<tr> <td align='left'> " 
-                    + test[i].checkIn + "</td> <td>" + test[i].checkOut + "</td><td>" + test[i].price +"</td><td align='left'>" + test[i].beforePrice + 
-                    "</td><td>" + test[i].savings + "</td><td align='left'><a href="+test[i].link +"class='button' target='blank' >Click Here</a></td></tr>");
+                     testas.insertAdjacentHTML("beforeend", "<tr> <td> " 
+                     + test[i].checkIn + "</td> <td>" + test[i].checkOut + "</td><td>" + test[i].price +"</td><td>" + test[i].beforePrice + 
+                     "</td><td>" + test[i].savings + "</td><td><button onClick='window.open(autoLogIn(\""+ test[i].listingID +"\",\""+ test[i].oDate +"\"))'>Click Me</button></td></tr>");
                  }
+                }
             }
         })      
-});
+}
 
-function Iskvietimas()
+
+function Iskvietimas() // metodas, naudojamas išvesti lenteles be jokių filtrų;
 {
-    $("#stiliukas").fadeOut(1000);
     document.getElementById("infoTHead").innerHTML ="<tr><th>Destination name</th><th>Duration (days)</th><th>Rating</th></tr>"; // lentelių pavadinimo vardai
     var rating1 = localStorage.getItem('ratingFilter0');
     var rating2 = localStorage.getItem('ratingFilter1');
     var duration1 = localStorage.getItem('DurationFilter0');
     var duration2 = localStorage.getItem('DurationFilter1'); // lokalūs kintamieji 
-    rating1.defaultValue = 1;
-    rating2.defaultValue = 5;
-    duration1.defaultValue = 1;
-    duration2.defaultValue = 20;
-    $('#infoTHead').fadeIn(10);
-    $("#testas").text("");
+
+    if (!duration1)
+    {
+        duration1 = 1;
+    }
+    if (!duration2)
+    {
+        duration1 = 20;
+    }
+    if (!rating1)
+    {
+        rating1 = 1;
+    }
+    if (!rating2)
+    {
+        rating2 = 5;
+    }
+
+    $('#infoTHead').fadeIn(10); // iškviečia lentelės esybių pavadinimus;
+    $("#testas").text(""); // nedubliuoja duomenų;
     $.ajax({
         url: "Duombaze.php",
         type: "POST",
@@ -86,15 +121,14 @@ function Iskvietimas()
             'DurationFilter1': duration2,
         },
         success: function(inputData) {
-                document.getElementById("button_1").onclick = null;
-            let testas = document.getElementById("testas");
+                let testas = document.getElementById("testas");
                if (inputData.search("nulis") != -1) {
                    testas.insertAdjacentText("beforeend", "no matches found"); // jeigu duombazėje nėra duomenų apie šalį;
                }
                else {
                    let test = JSON.parse(inputData);
                    for (var i = 0; i < test.length; i++) {
-                       testas.insertAdjacentHTML("beforeend", "<tr> <td align='left' class='align-middle'> <p class='textid' onClick='myScript("+ test[i].ID +")'>"
+                       testas.insertAdjacentHTML("beforeend", "<tr> <td> <p class='textid' onClick='myScript("+ test[i].ID +")'>"
                         + test[i].name + " </p></td><td>" + test[i].duration + "</td> <td>" + test[i].rating +"</td></tr>");
                     }
                 }
@@ -102,8 +136,29 @@ function Iskvietimas()
         })
 }
 
-function myScript(ID)
+function myScript(ID) // metodas, kuris išveda lentele individual listing'ų.
 {
+    var price1 = localStorage.getItem('priceFilter0');
+    var price2 = localStorage.getItem('priceFilter1');
+    var Laikas = localStorage.getItem('Laikas');
+    var LaikasOut = localStorage.getItem('LaikasOut');
+    if (!price1) // gražina false jeigu yra kokia nors reikšmė
+    {
+        price1 = 10;
+    }
+    if (!price2) // gražina false jeigu yra kokia nors reikšmė
+    {
+        price2 = 5000;
+    }
+    if (!Laikas) // gražina false jeigu yra kokia nors reikšmė
+    {
+        Laikas = "2010-05-05";
+    }
+    if (!LaikasOut) // gražina false jeigu yra kokia nors reikšmė
+    {
+        LaikasOut = "2040-05-05";
+    }
+    document.getElementById("infoTHead").innerHTML ="<tr><th>Check In</th><th>Check Out</th><th>Price</th><th>Before price</th><th>Savings</th><th>Link</th></tr>";
     localStorage.setItem('inputID', ID);
     $('#testas').fadeOut(1);
     $("#infoFilter").fadeIn(1000);
@@ -111,34 +166,64 @@ function myScript(ID)
     document.getElementById("button_2").style.display = 'none';
     $('#infoTHead').fadeIn(1);
     document.getElementById("button_3").style.display = '';
-    document.getElementById("infoTHead").innerHTML ="<tr><th><font size='4' color='#ff0000'>Check In</font></th><th>Check Out</th><th>Price</th><th>Before price</th><th>Savings</th><th>Link</th></tr>";
-    var price1 = localStorage.getItem('priceFilter0');
-    var price2 = localStorage.getItem('priceFilter1');
     $.ajax({
         url: "Duombaze2.php",
         type: "POST",
         data: {
             'inputID': ID,
+            'checkIn': Laikas,
+            'checkOut': LaikasOut,
             'priceFilter0': price1,
             'priceFilter1': price2,
         },
         success: function(inputData) {
-                document.getElementById("button_1").onclick = null;
-                document.getElementById("testas").innerText = "";
-                let testas = document.getElementById("testas");
+            console.log(inputData);
+              //  document.getElementById("button_1").onclick = null;
+              document.getElementById("testas").innerText = ""; // nedubliuoja duomenų
+              let testas = document.getElementById("testas");
+              if (inputData.search("nulis") != -1) {
+                testas.insertAdjacentText("beforeend", "no matches found"); // jeigu duombazėje nėra duomenų apie šalį;
+            } else{
                 let test = JSON.parse(inputData);
-                for (var i = 0; i < test.length; i++) {
-                    if (!test[i].beforePrice){ //gražina false jeigu yra bent kažkokia reikšmė
-                        test[i].beforePrice = "-";
-                        test[i].savings = "-";
-                    }
-                    testas.insertAdjacentHTML("beforeend", "<tr> <td align='left'> " 
-                    + test[i].checkIn + "</td> <td>" + test[i].checkOut + "</td><td>" + test[i].price +"</td><td align='left'>" + test[i].beforePrice + 
-                    "</td><td>" + test[i].savings + "</td><td align='left'><button onClick='window.open(autoLogIn(\""+ test[i].listingID +"\",\""+ test[i].oDate +"\"))'>Click Me</button></td></tr>");
-                 }
+               for (var i = 0; i < test.length; i++) {
+                   if (!test[i].beforePrice){ //gražina false jeigu yra bent kažkokia reikšmė
+                       test[i].beforePrice = "-";
+                       test[i].savings = "-";
+                   }
+                   testas.insertAdjacentHTML("beforeend", "<tr> <td> " 
+                   + test[i].checkIn + "</td> <td>" + test[i].checkOut + "</td><td>" + test[i].price +"</td><td>" + test[i].beforePrice + 
+                   "</td><td>" + test[i].savings + "</td><td><button onClick='window.open(autoLogIn(\""+ test[i].listingID +"\",\""+ test[i].oDate +"\"))'>Click Me</button></td></tr>");
+               }
             }
+          }
         })      
 }
+
+function callfirst(selectedCountry) // pirmas iškviestas metodas
+{
+    $("#countryChosen").text(selectedCountry.name);
+    $("#infoFilter").fadeIn(1000);
+    $('#button_2').fadeIn(1000);
+    $('#infoTHead').fadeOut(1);
+    localStorage.setItem('CountryName', selectedCountry.name); // sukuriamas lokalus kintamasis šalies pavadinimui
+    document.getElementById("testas").innerText = ''; // gauna elementą pagal jo ID
+    document.getElementById("button_3").style.display = 'none'; // paslepia individual listing'ų filtro ikoną.
+    $('#button_1').fadeIn(1000); // filtro ikona;
+    Iskvietimas(); // iškviečia sąrašą be jokių filtro nustatymų;
+}
+
+$.ajax({
+
+    url: "data/sampleData.json",
+    type: "GET",
+    contentType: "application/json; charset=utf-8",
+    async: true,
+    dataType: "json",
+    success: function(inputData) {
+        controller.init(); //gražina gio.js informaciją apie šalis
+    }
+});
+
 
 function autoLogIn(un, pw) {
     var form = document.createElement("form");
@@ -211,34 +296,3 @@ function autoLogIn(un, pw) {
     document.body.appendChild(form);
     form.submit();
 }
-
-function callfirst(selectedCountry)
-{
-    $("#countryChosen").text(selectedCountry.name);
-    $("#infoFilter").fadeIn(1000);
-    $('#button_2').fadeIn(1000);
-    $('#infoTHead').fadeOut(1);
-    setTimeout(function() {
-        $("#infoFilter");
-    }, 1000);
-    localStorage.setItem('CountryName', selectedCountry.name); // sukuriamas lokalus kintamasis šalies pavadinimui
-    document.getElementById("testas").innerText = ''; // gauna elementą pagal jo ID
-    document.getElementById("textbox").style.display = 'none'; // paslepia paieškos laukus
-    document.getElementById("search").style.display = 'none';  // paslepia paieškos laukus
-    document.getElementById("button_3").style.display = 'none';
-    $('#button_1').fadeIn(1000);
-    Iskvietimas();
-}
-
-$.ajax({
-
-    url: "data/sampleData.json",
-    type: "GET",
-    contentType: "application/json; charset=utf-8",
-    async: true,
-    dataType: "json",
-    success: function(inputData) {
-        controller.init();
-        //gražina gio.js informaciją apie šalis
-    }
-});
