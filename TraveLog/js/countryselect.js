@@ -24,12 +24,34 @@ $("#button_4").click(function(e) { // metodas, kuris iškviečia listing'us, nus
     IskvietimasIndividual();    
 });
 
+$("#button_5").click(function(e) { // metodas, kuris gražina atgal į pasirinktos šalies pagr. listingus
+    e.preventDefault();
+    Iskvietimas(); // išvedama pirmų listingų lentelę
+    $('#Sort').fadeIn(1000); // įjungiame pirmos lentelės rikiavimą
+    $('#button_5').fadeOut(1000); // išjungiame pirmos lentelės rikiavimą
+    $('#button_2').fadeIn(1000); // įjungia filtrų mygtuką
+    $('#button_3').fadeOut(1000);  // išjungia individual filtrų mygtuką
+
+});
+
+function SortIndividual(){ // atnaujina duomenis pasirinkus rikiavimą
+    var ID = localStorage.getItem('inputID');
+    var Sort = document.getElementById("SortIndividual").value;
+    myScript(ID, Sort);
+}
+
+function Sort(){ // atnaujina duomenis pasirinkus rikiavimą
+    var Sort = document.getElementById("Sort").value;
+    Iskvietimas(Sort);
+}
+
 function IskvietimasIndividual(){
     var price1 = localStorage.getItem('priceFilter0');
     var price2 = localStorage.getItem('priceFilter1');
     var Laikas = localStorage.getItem('Laikas');
     var LaikasOut = localStorage.getItem('LaikasOut');
-    var ID = localStorage.getItem('inputID'); // lokalūs kintamieji
+    var ID = localStorage.getItem('inputID');
+    var Sort = "Price";
     if (!price1) // gražina false jeigu yra kokia nors reikšmė
     {
         price1 = 10;
@@ -46,10 +68,6 @@ function IskvietimasIndividual(){
     {
         LaikasOut = "2040-05-05";
     }
-    console.log(Laikas);
-    console.log(LaikasOut);
-    console.log(price1);
-    console.log(price2);
     $.ajax({
         url: "Duombaze2.php",
         type: "POST",
@@ -59,9 +77,9 @@ function IskvietimasIndividual(){
             'priceFilter1': price2,
             'checkIn': Laikas,
             'checkOut': LaikasOut,
+            'SortIndividual': Sort,
         },
         success: function(inputData) {
-            console.log(inputData);
                 document.getElementById("testas").innerText = ""; // nedubliuoja duomenų
                 let testas = document.getElementById("testas");
                 if (inputData.search("nulis") != -1) {
@@ -75,7 +93,7 @@ function IskvietimasIndividual(){
                      }
                      testas.insertAdjacentHTML("beforeend", "<tr> <td> " 
                      + test[i].checkIn + "</td> <td>" + test[i].checkOut + "</td><td>" + test[i].price +"</td><td>" + test[i].beforePrice + 
-                     "</td><td>" + test[i].savings + "</td><td><button onClick='window.open(autoLogIn(\""+ test[i].listingID +"\",\""+ test[i].oDate +"\"))'>Click Me</button></td></tr>");
+                     "</td><td>" + test[i].savings + "</td><td><button class='Redirect' onClick='window.open(autoLogIn(\""+ test[i].listingID +"\",\""+ test[i].oDate +"\"))'>Click Me</button></td></tr>");
                  }
                 }
             }
@@ -83,8 +101,9 @@ function IskvietimasIndividual(){
 }
 
 
-function Iskvietimas() // metodas, naudojamas išvesti lenteles be jokių filtrų;
+function Iskvietimas(Sort) // metodas, naudojamas išvesti lenteles be jokių filtrų;
 {
+    document.getElementById("SortIndividual").style.display = 'none'; // išjungiame pirmos lentelės rikiavimą
     document.getElementById("infoTHead").innerHTML ="<tr><th>Destination name</th><th>Duration (days)</th><th>Rating</th></tr>"; // lentelių pavadinimo vardai
     var rating1 = localStorage.getItem('ratingFilter0');
     var rating2 = localStorage.getItem('ratingFilter1');
@@ -107,6 +126,10 @@ function Iskvietimas() // metodas, naudojamas išvesti lenteles be jokių filtr�
     {
         rating2 = 5;
     }
+    if (!Sort)
+    {
+        Sort = "destinationName";
+    }
 
     $('#infoTHead').fadeIn(10); // iškviečia lentelės esybių pavadinimus;
     $("#testas").text(""); // nedubliuoja duomenų;
@@ -119,6 +142,7 @@ function Iskvietimas() // metodas, naudojamas išvesti lenteles be jokių filtr�
             'reitingas1': rating2,
             'DurationFilter0': duration1,
             'DurationFilter1': duration2,
+            'Sort': Sort,
         },
         success: function(inputData) {
                 let testas = document.getElementById("testas");
@@ -136,12 +160,16 @@ function Iskvietimas() // metodas, naudojamas išvesti lenteles be jokių filtr�
         })
 }
 
-function myScript(ID) // metodas, kuris išveda lentele individual listing'ų.
+function myScript(ID, SortIndividual) // metodas, kuris išveda lentele individual listing'ų.
 {
+    document.getElementById("Sort").style.display = 'none'; // išjungiame pirmos lentelės rikiavimą
+    $('#button_5').fadeIn(1000); // įjungiame grįžimo atgal mygtuką
+    $('#button_3').fadeIn(1000);
     var price1 = localStorage.getItem('priceFilter0');
     var price2 = localStorage.getItem('priceFilter1');
     var Laikas = localStorage.getItem('Laikas');
     var LaikasOut = localStorage.getItem('LaikasOut');
+    document.getElementById("SortIndividual").style.display = ''; // įjungiame rikiavimą
     if (!price1) // gražina false jeigu yra kokia nors reikšmė
     {
         price1 = 10;
@@ -157,6 +185,10 @@ function myScript(ID) // metodas, kuris išveda lentele individual listing'ų.
     if (!LaikasOut) // gražina false jeigu yra kokia nors reikšmė
     {
         LaikasOut = "2040-05-05";
+    }
+    if (!SortIndividual)
+    {
+        SortIndividual = "Price";
     }
     document.getElementById("infoTHead").innerHTML ="<tr><th>Check In</th><th>Check Out</th><th>Price</th><th>Before price</th><th>Savings</th><th>Link</th></tr>";
     localStorage.setItem('inputID', ID);
@@ -175,10 +207,9 @@ function myScript(ID) // metodas, kuris išveda lentele individual listing'ų.
             'checkOut': LaikasOut,
             'priceFilter0': price1,
             'priceFilter1': price2,
+            'SortIndividual': SortIndividual,
         },
         success: function(inputData) {
-            console.log(inputData);
-              //  document.getElementById("button_1").onclick = null;
               document.getElementById("testas").innerText = ""; // nedubliuoja duomenų
               let testas = document.getElementById("testas");
               if (inputData.search("nulis") != -1) {
@@ -192,7 +223,7 @@ function myScript(ID) // metodas, kuris išveda lentele individual listing'ų.
                    }
                    testas.insertAdjacentHTML("beforeend", "<tr> <td> " 
                    + test[i].checkIn + "</td> <td>" + test[i].checkOut + "</td><td>" + test[i].price +"</td><td>" + test[i].beforePrice + 
-                   "</td><td>" + test[i].savings + "</td><td><button onClick='window.open(autoLogIn(\""+ test[i].listingID +"\",\""+ test[i].oDate +"\"))'>Click Me</button></td></tr>");
+                   "</td><td>" + test[i].savings + "</td><td><button class='Redirect' onClick='window.open(autoLogIn(\""+ test[i].listingID +"\",\""+ test[i].oDate +"\"))'>Click Me</button></td></tr>");
                }
             }
           }
@@ -201,6 +232,9 @@ function myScript(ID) // metodas, kuris išveda lentele individual listing'ų.
 
 function callfirst(selectedCountry) // pirmas iškviestas metodas
 {
+    document.getElementById("SortIndividual").style.display = 'none'; // išjungiame antros lentelės rikiavimą
+    document.getElementById("Sort").style.display = ''; // įjungiame pirmos lentelės rikiavimą
+    document.getElementById("button_5").style.display = 'none'; // išjungiame grįžimo atgal mygtuką
     $("#countryChosen").text(selectedCountry.name);
     $("#infoFilter").fadeIn(1000);
     $('#button_2').fadeIn(1000);
