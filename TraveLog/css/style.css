@@ -111,8 +111,8 @@ main {
 
 .nav-link svg {
   width: 2rem;
-  min-width: 2rem;
-  margin: 0 1.5rem;
+  min-width: 2rem;  
+  margin: 0 0.5rem;
 }
 
 .fa-primary {
@@ -180,6 +180,14 @@ main {
   main {
     margin: 0;
   }
+
+  .modal-content {
+    margin: auto;
+    margin-left: 1rem;
+    width: 93%;
+  }
+
+
 }
 
 /* Large screens */
@@ -206,6 +214,15 @@ main {
   .navbar:hover .logo-text
   {
     left: 0px;
+  }
+  .modal-content {
+    margin: auto;
+    width: 40%;
+    /* margin-left: 0rem; */
+    /* padding: 20px;
+    border: 1px solid #888;
+    width: 40%;
+    font-family: 'Open Sans'; */
   }
 }
 
@@ -265,11 +282,13 @@ main {
 
 /* Modal Content */
 .modal-content {
+  display:table;
   background-color: #23232e;
-  margin: auto;
+  /* margin: auto; */
+  /* margin-left: 0rem;  */
   padding: 20px;
   border: 1px solid #888;
-  width: 40%;
+  /* width: 40%; */
   font-family: 'Open Sans';
 }
 
@@ -305,5 +324,4 @@ main {
 
 .text-fix{
   table-layout: fixed;
-  over-flow: break-word;
 }
