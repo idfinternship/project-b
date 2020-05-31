@@ -39,11 +39,6 @@
     border-bottom: none;
     border-top: none;
     z-index: 99;
-    /*position the autocomplete items to be the same width as the container:*/
-    top: 65px;
-    left: 270px;
-    right: 0;
-    width: 261px;
   }
   
   .autocomplete-items div {
@@ -81,12 +76,41 @@
     }
     
     #search {
-      left: 471px;
       width: 60px;
       border-radius: 5px;
     }
     #textbox, #myInput{
-      left: 270px;
       width: 200px;
       border-radius: 5px;
     }     
+    @media only screen and (max-width: 600px) {
+      #search {
+        left: 253px;
+      }
+      #textbox, #myInput{
+        left: 50px;
+      } 
+      .autocomplete-items {
+        top: 65px;
+        left: 50px;
+        right: 0;
+        width: 261px;
+      }
+    }
+    
+    /* Large screens */
+    @media only screen and (min-width: 600px) {
+      #search {
+        left: 471px;
+      }
+      #textbox, #myInput{
+        left: 270px;
+      } 
+
+      .autocomplete-items {
+        top: 65px;
+        left: 270px;
+        right: 0;
+        width: 261px;
+      }
+    }
