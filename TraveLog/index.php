@@ -35,7 +35,7 @@
     <script src="js/fb.js"></script>
     <div id="fb-root"></div>
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/lt_LT/sdk.js#xfbml=1&version=v6.0&appId=558173124816363&autoLogAppEvents=1"></script>
-    
+    <script src="js/loadselectedcountries.js"></script>
     <div class="container">
       <?php if($msg != ''): ?>
         <script type="text/javascript">$('.alert').alert()</script>

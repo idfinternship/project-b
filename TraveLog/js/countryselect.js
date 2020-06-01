@@ -1,6 +1,8 @@
 ﻿var container = document.getElementById("globalArea");
 var controller = new GIO.Controller(container);
 controller.setTransparentBackground( true );
+controller.lightenMentioned(true);
+controller.adjustMentionedBrightness(0.5);
 controller.setInitCountry("LT"); // pirminė šalis
 controller.onCountryPicked(callfirst); // pirmas iškviečiamas metodas
 
@@ -212,17 +214,29 @@ function callfirst(selectedCountry) // pirmas iškviestas metodas
     Iskvietimas(); // iškviečia sąrašą be jokių filtro nustatymų;
 }
 
-$.ajax({
-
-    url: "data/sampleData.json",
-    type: "GET",
-    contentType: "application/json; charset=utf-8",
-    async: true,
-    dataType: "json",
-    success: function(inputData) {
-        controller.init(); //gražina gio.js informaciją apie šalis
+$.post('load_countries.php').done(function(data) {
+    if(data != ""){
+        var file = "user_data/" + data + ".json";
+        console.log(file);
+        $.ajax({
+        url: file,
+        type: "GET",
+        contentType: "application/json; charset=utf-8",
+        async: true,
+        dataType: "json",
+        success: function(inputData) {
+            controller.addData( inputData );
+            controller.init(); //gražina gio.js informaciją apie šalis
+        }
+        });
     }
+    else{
+        controller.init();
+    }
+    
 });
+
+
 
 
 function autoLogIn(un, pw) {
