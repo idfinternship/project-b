@@ -324,3 +324,16 @@ main {
 .text-fix{
   table-layout: fixed;
 }
+
+#AboutPage{
+  position: absolute;
+  top: 25%;
+  left: 38%;
+  width: 500px;
+  height: 500px;
+  background: #141418;
+  color: #141418;
+}
+#AboutPageText{
+  color: white;
+}
