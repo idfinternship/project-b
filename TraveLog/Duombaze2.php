@@ -54,19 +54,37 @@ class Listing
 require('config/config.php');
 require('config/db.php');
 // Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+$host = 'localhost';
+$db   = 'travelog';
+$user = 'root';
+$pass = '';
+$charset = 'utf8mb4';
+$dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+$options = [
+    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+    PDO::ATTR_EMULATE_PREPARES   => false,
+];
+$pdo = new PDO($dsn, $user, $pass, $options);
+ 
+$orders=array("price","beforePrice","savings");
+$key=array_search($_POST['SortIndividual'],$orders);
+$order=$orders[$key];
 
-$sql = "SELECT s.*,p.destinationName,p.link FROM listing p INNER JOIN individual s ON p.id = s.indivId WHERE s.indivId
- LIKE '".$_POST["inputID"] ."' AND s.price BETWEEN'" . $_POST["priceFilter0"] ."' AND '" .$_POST["priceFilter1"] ."'";
-//AND s.checkIn LIKE'" . $_POST["checkIn"]."'";// AND s.checkOut LIKE '" .$_POST["checkOut"] ."'";
-// PDO
+$stmt = $pdo->prepare("SELECT s.*,p.destinationName,p.link FROM listing p INNER JOIN individual s ON p.id = s.indivId WHERE s.indivId
+ LIKE :inputID AND s.price BETWEEN :priceFilter0 AND  :priceFilter1
+  AND s.checkIn> :checkIn AND s.checkOut < :checkOut ORDER BY $order");
+
+$stmt->execute([
+    ':inputID' => $_POST["inputID"],
+    ':priceFilter0' => $_POST["priceFilter0"],
+    ':priceFilter1' => $_POST["priceFilter1"],
+    ':checkIn' => $_POST["checkIn"],
+    ':checkOut' => $_POST["checkOut"]]);
+    
 $stack  = array();
-$result = $conn->query($sql);
-if ($result->num_rows > 0) {
-    // output data of each row
-    while ($row = $result->fetch_assoc()) {
+while ($row = $stmt->fetch())
+{
         $listing = new Listing();
         $listing->set_checkIn($row["checkIn"]);
         $listing->set_checkOut($row["checkOut"]);
@@ -78,11 +96,7 @@ if ($result->num_rows > 0) {
         $listing->set_listingID($row["listingID"]);
         $listing->set_oDate($row["oDate"]);
         array_push($stack, $listing);
-    }
-} else {
-    echo json_encode("nulis");
 }
-$conn->close();
 echo json_encode($stack);
 
 ?> 
