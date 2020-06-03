@@ -12,13 +12,14 @@ import re
 import os
 
 class TravelData(object):
-    def __init__(self,destinationName,duration,linkToWebsite,rating,countries,IndivTravelData):
+    def __init__(self,destinationName,duration,linkToWebsite,rating,countries,IndivTravelData,Image):
         self.destinationName = destinationName
         self.duration = duration
         self.linkToWebsite = linkToWebsite
         self.rating = rating
         self.countries = countries
         self.IndivTravelData = IndivTravelData
+        self.Image = Image
 
 
 class IndivTravelData(object):
@@ -100,7 +101,7 @@ def main(word1=first_arg,word2=secon_arg,word3=third_arg):
         for i in range(0,len(content)):
             Link = content[i].find(class_='btn btn-round btn-red btn-interactive').attrs['href']
             PlaceToGo = content[i].find(class_='title').find('span').contents[0]
-
+            Image = content[i].find('img').attrs['src']
             temp_Duration = content[i].find(class_='mixed-price-block').contents[0].contents[0]
             new_Duration=re.split(' ',temp_Duration)
             Duration=new_Duration[0]
@@ -133,11 +134,11 @@ def main(word1=first_arg,word2=secon_arg,word3=third_arg):
             if(len(IndvData)==0):
                 continue
 
-            toAdd = TravelData(PlaceToGo,Duration,Link,Rating,Countries,IndvData)
+            toAdd = TravelData(PlaceToGo,Duration,Link,Rating,Countries,IndvData,Image)
             contentList.append(toAdd)
 
     contentInfo = [{"Destination Name": v.destinationName, "Duration": v.duration,
-                     "Rating": v.rating, "Link" : v.linkToWebsite, "Countries": [d for d in v.countries],
+                     "Rating": v.rating, "Link" : v.linkToWebsite,"Image":v.Image, "Countries": [d for d in v.countries],
                      "Individual data": [{"Check In": a.checkIn,"CheckOut":a.checkOut,"savings":a.savings,"beforeSavings":a.beforeSavings,"price":a.price,"ID":a.id,"o_data":a.o_data}
                       for a in v.IndivTravelData]}
                     for v in contentList
