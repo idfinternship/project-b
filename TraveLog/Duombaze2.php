@@ -98,7 +98,8 @@ while ($row = $stmt->fetch()) {
         array_push($stack, $listing);
     }
 } else {
-echo json_encode($stack);
+    echo json_encode("nulis");
 }
+echo json_encode($stack);
 
 ?> 
