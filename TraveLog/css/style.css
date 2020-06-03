@@ -157,6 +157,47 @@ main {
   transform: rotate(-180deg);
 }
 
+.button {
+  position: relative;
+}
+
+.button p {
+  display: transparent;
+  font-size: 1em;
+  width: 100%;
+  height: 100%;
+  line-height: 100%; 
+  padding: 10px 0;
+  margin: -10px 0;
+}
+
+.button figure {
+  display: none;
+  position: absolute;
+  top: 2em;
+  left: 1em;
+  padding: 0;
+  margin: 0;
+}
+
+.button img {
+  display: block;
+  position: relative;
+  z-index:1000;
+  border-radius: 0.8em;
+  max-width: 100%;
+  height: auto;
+}
+
+.button:focus figure,
+.button:hover figure {
+  display: block;
+}
+.button:focus p,
+.button:hover p {
+  background: none;
+}
+
 /* Small screens */
 @media only screen and (max-width: 600px) {
   .navbar {
