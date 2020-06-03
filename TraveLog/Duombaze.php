@@ -66,9 +66,8 @@ $stmt->execute([
 ':inputValue' => $_POST["inputValue"]]);
  
 $stack  = array();
- 
-while ($row = $stmt->fetch())
-{
+if ($stmt->rowCount() > 0) {
+while ($row = $stmt->fetch()) {
     $country = new Country();
     $country->set_name($row["destinationName"]);
     $country->set_duration($row["duration"]);
@@ -77,7 +76,9 @@ while ($row = $stmt->fetch())
     $country->set_image($row["imageLink"]);
  
     array_push($stack, $country);
+    }
+} else {
+    echo json_encode("nulis");
 }
- 
 echo json_encode($stack);
 ?>

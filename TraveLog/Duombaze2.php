@@ -83,8 +83,8 @@ $stmt->execute([
     ':checkOut' => $_POST["checkOut"]]);
     
 $stack  = array();
-while ($row = $stmt->fetch())
-{
+if ($stmt->rowCount() > 0) {
+while ($row = $stmt->fetch()) {
         $listing = new Listing();
         $listing->set_checkIn($row["checkIn"]);
         $listing->set_checkOut($row["checkOut"]);
@@ -96,7 +96,9 @@ while ($row = $stmt->fetch())
         $listing->set_listingID($row["listingID"]);
         $listing->set_oDate($row["oDate"]);
         array_push($stack, $listing);
-}
+    }
+} else {
 echo json_encode($stack);
+}
 
 ?> 
