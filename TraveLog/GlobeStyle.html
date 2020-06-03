@@ -1,46 +1,48 @@
 <input id="textbox" type="text" name="myCountry" placeholder="Country">
 <div id="search">Search</div>
-        <script src="js/search.js"></script>
+<div id="AboutPage" class="modal-content"><div id="AboutPageText"></div></div>
+<script src="js/search.js"></script>
+        <script src="js/AboutPage.js"></script>
         <div id="filter">
-        <div id="filterheader"><p class="HeaderText">Click here to move</p> </div>
-        <div class="alert-close1">×</div>
-            <input type="text" id="amount"></input>
-            <input type="text" id="amountduration"></input>
-        <div class="slider-range"><p id="textforslider">Rating</p></div>
-        <div class="slider-range1"><p id="textforslider">Duration</p></div>
-        <button id="button_1">Try it</button></div>
-        <div id="individualfilter"><div id="individualfilterheader"><p class="HeaderText">Click here to move</p></div>
-        <div class="alert-close1">×</div>
-        <div class="slider-range2">
-            <p class="p2">Price:<p><input type="text" id="amountprice"></input>
-            <script src="js/slider.js"></script>
-        </div>
-        <input id="datetimepicker" placeholder="Pick check-in date"></input>
-        <input id="datetimepicker1" placeholder="Pick check-out date"></input>
-        <button id="button_4">Try it!</button>
-        <script src="js/TimePicker.js"></script>
-        </div>
-        <div id="globalArea"></div>
-        <div id="infoFilter" style="display: grid;grid-template-rows: 0px 25%;">        
-            <select name="SortIndividuals" id="SortIndividual" onChange="SortIndividual()">
-            <option value="Price">Sort by:</option>
-          <option value="Price">Price</option>
-          <option value="beforePrice">Before price</option>
-          <option value="savings">savings</option></select>
-          <select name="Sort" id="Sort" onChange="Sort()">
-            <option value="DestinationName">Sort by:</option>
-          <option value="DestinationName">Destination name</option>
-          <option value="duration">Duration</option>
-          <option value="rating">Ratings</option></select><strong>
-            <button id="button_2" class="btna btn"></button>
-        <button id="button_3" class="btna1 btn"></button>
-        <button id="button_5" class="btna2 btn"></button>
-        <h2 id="countryChosen" style="position: inherit;top: -1px;"></h2>
-        </strong>
-        <div class="alert-close">×</div>
-    <div id="countryFilter"></div>
-    <table class = "table cool">
-    <thead id="infoTHead"></thead>
-    <tbody id="testas"></tbody>
-    </table>
-  </div>
+          <div id="filterheader"><p class="HeaderText">Click here to move</p> </div>
+          <div class="alert-close1">×</div>
+              <input type="text" id="amount"></input>
+              <input type="text" id="amountduration"></input>
+          <div class="slider-range"><p id="textforslider">Rating</p></div>
+          <div class="slider-range1"><p id="textforslider">Duration</p></div>
+          <button id="button_1">Try it</button></div>
+          <div id="individualfilter"><div id="individualfilterheader"><p class="HeaderText">Click here to move</p></div>
+          <div class="alert-close1">×</div>
+          <div class="slider-range2">
+              <p class="p2">Price:<p><input type="text" id="amountprice"></input>
+              <script src="js/slider.js"></script>
+          </div>
+          <input id="datetimepicker" placeholder="Pick check-in date"></input>
+          <input id="datetimepicker1" placeholder="Pick check-out date"></input>
+          <button id="button_4">Try it!</button>
+          <script src="js/TimePicker.js"></script>
+          </div>
+          <div id="globalArea"></div>
+          <div id="infoFilter" style="display: none" >      
+              <select name="SortIndividuals" id="SortIndividual" onChange="SortIndividual()">
+              <option value="Price">Sort by:</option>
+            <option value="Price">Price</option>
+            <option value="beforePrice">Before price</option>
+            <option value="savings">savings</option></select>
+            <select name="Sort" id="Sort" onChange="Sort()">
+              <option value="DestinationName">Sort by:</option>
+            <option value="DestinationName">Destination name</option>
+            <option value="duration">Duration</option>
+            <option value="rating">Ratings</option></select><strong>
+              <button id="button_2" class="btna btn"></button>
+          <button id="button_3" class="btna1 btn"></button>
+          <button id="button_5" class="btna2 btn"></button>
+          <h2 id="countryChosen" style="position: inherit;top: -1px;"></h2>
+          </strong>
+          <div class="alert-close">×</div>
+      <div id="countryFilter"></div>
+      <table class = "table cool">
+      <thead id="infoTHead"></thead>
+      <tbody id="testas"></tbody>
+      </table>
+    </div>
