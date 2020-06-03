@@ -6,7 +6,9 @@ class Country
     public $duration;
     public $rating;
     public $ID;
-    
+    public $image;
+ 
+   
     // Methods
     function set_name($name)
     {
@@ -24,33 +26,58 @@ class Country
     {
         $this->ID = $ID;
     }
+    function set_image($image)
+    {
+        $this->image = $image;
+    }
 }
-
+ 
 require('config/config.php');
 require('config/db.php');
 // Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-//$sql = "SELECT s.* FROM (SELECT k.name,i.listingId FROM country_has_listing i LEFT JOIN country k ON k.id= i.countryId) p INNER JOIN listing s ON s.id = p.listingId AND s.rating
-// BETWEEN'" .$_POST["reitingas"] . "'AND '" .$_POST["reitingas1"]."' WHERE p.name LIKE '" .$_POST["inputValue"] ."'";
-$sql = "SELECT s.* FROM (SELECT k.name,i.listingId FROM country_has_listing i LEFT JOIN country k ON k.id= i.countryId) p INNER JOIN listing s ON s.id = p.listingId AND s.rating
- BETWEEN'" .$_POST["reitingas"] . "'AND '" .$_POST["reitingas1"]."' WHERE p.name LIKE '" .$_POST["inputValue"] ."'";
+ 
+$host = 'localhost';
+$db   = 'travelog';
+$user = 'root';
+$pass = '';
+$charset = 'utf8mb4';
+$dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+$options = [
+    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+    PDO::ATTR_EMULATE_PREPARES   => false,
+];
+$pdo = new PDO($dsn, $user, $pass, $options);
+ 
+$orders=array("destinationName","duration","rating");
+$key=array_search($_POST['Sort'],$orders);
+$order=$orders[$key];
+ 
+$stmt = $pdo->prepare("SELECT s.* FROM (SELECT k.name,i.listingId FROM country_has_listing i LEFT JOIN country k ON k.id= i.countryId) p
+ INNER JOIN listing s ON s.id = p.listingId AND s.rating BETWEEN :reitingas AND :reitingas1 AND s.duration
+BETWEEN :DurationFilter0 AND :DurationFilter1
+ WHERE p.name LIKE :inputValue ORDER BY $order");
+ 
+$stmt->execute([
+':reitingas' => $_POST["reitingas"],
+':reitingas1' => $_POST["reitingas1"],
+':DurationFilter0' => $_POST["DurationFilter0"],
+':DurationFilter1' => $_POST["DurationFilter1"],
+':inputValue' => $_POST["inputValue"]]);
+ 
 $stack  = array();
-$result = $conn->query($sql);
-if ($result->num_rows > 0) {
-    // output data of each row
-    while ($row = $result->fetch_assoc()) {
-        $country = new Country();
-        $country->set_name($row["destinationName"]);
-        $country->set_duration($row["duration"]);
-        $country->set_rating($row["rating"]);
-        $country->set_ID($row["id"]);
-        array_push($stack, $country);
-    }
-} else {
-    echo json_encode("nulis");
+ 
+while ($row = $stmt->fetch())
+{
+    $country = new Country();
+    $country->set_name($row["destinationName"]);
+    $country->set_duration($row["duration"]);
+    $country->set_rating($row["rating"]);
+    $country->set_ID($row["id"]);
+    $country->set_image($row["imageLink"]);
+ 
+    array_push($stack, $country);
 }
-$conn->close();
+ 
 echo json_encode($stack);
-?> 
+?>
