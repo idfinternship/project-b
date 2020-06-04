@@ -159,7 +159,7 @@ function Iskvietimas(Sort) // metodas, naudojamas išvesti lenteles be jokių fi
                    for (var i = 0; i < test.length; i++) {
                     testas.insertAdjacentHTML("beforeend", "<tr> "+"<td><div class="+"button"+">"
                     +" <p class='textid' class='Redirect' onClick='myScript("+ test[i].ID +")'>"
-                     + test[i].name + " </p>"+" <figure><img src="+test[i].image+" width='400' height='300' alt='photo' class='popupImage'></figure> </div>"+"</td><td>" + test[i].duration + "</td> <td>" + test[i].rating +"</td></tr>");
+                     + test[i].name + " </p>"+" <figure class='popupImage'><img src="+test[i].image+" width='400' height='300' alt='photo'></figure> </div>"+"</td><td>" + test[i].duration + "</td> <td>" + test[i].rating +"</td></tr>");
                     }
                 }
             }
@@ -229,7 +229,7 @@ function myScript(ID, SortIndividual) // metodas, kuris išveda lentele individu
                    }
                    testas.insertAdjacentHTML("beforeend", "<tr> <td> " 
                    + test[i].checkIn + "</td> <td>" + test[i].checkOut + "</td><td>" + test[i].price +"</td><td>" + test[i].beforePrice + 
-                   "</td><td>" + test[i].savings + "</td><td><button onClick='window.open(autoLogIn(\""+ test[i].listingID +"\",\""+ test[i].oDate +"\"))'>Click Me</button></td></tr>");
+                   "</td><td>" + test[i].savings + "</td><td><button class='Redirect' onClick='window.open(autoLogIn(\""+ test[i].listingID +"\",\""+ test[i].oDate +"\"))'>Click Me</button></td></tr>");
                }
             }
           }
