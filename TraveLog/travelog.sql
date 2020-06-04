@@ -9813,12 +9813,14 @@ INSERT INTO `listing` (`destinationName`, `duration`, `rating`, `link`, `imageLi
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `username` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
   `created` datetime NOT NULL DEFAULT current_timestamp(),
   `modified` datetime NOT NULL DEFAULT current_timestamp(),
   `active` tinyint(1) NOT NULL DEFAULT 0,
-  `verification_hash` varchar(255) NOT NULL
+  `verification_hash` varchar(255) DEFAULT NULL,
+  `fb_id` bigint(20) DEFAULT NULL,
+  `fb_linked` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --

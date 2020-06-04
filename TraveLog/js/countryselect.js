@@ -1,6 +1,7 @@
 ﻿var container = document.getElementById("globalArea");
 var controller = new GIO.Controller(container);
 controller.setTransparentBackground( true );
+controller.lightenMentioned(true);
 controller.setInitCountry("LT"); // pirminė šalis
 controller.onCountryPicked(callfirst); // pirmas iškviečiamas metodas
 
@@ -158,7 +159,7 @@ function Iskvietimas(Sort) // metodas, naudojamas išvesti lenteles be jokių fi
                    for (var i = 0; i < test.length; i++) {
                     testas.insertAdjacentHTML("beforeend", "<tr> "+"<td><div class="+"button"+">"
                     +" <p class='textid' class='Redirect' onClick='myScript("+ test[i].ID +")'>"
-                     + test[i].name + " </p>"+" <figure><img src="+test[i].image+" width='400' height='300' alt='photo'></figure> </div>"+"</td><td>" + test[i].duration + "</td> <td>" + test[i].rating +"</td></tr>");
+                     + test[i].name + " </p>"+" <figure><img src="+test[i].image+" width='400' height='300' alt='photo' class='popupImage'></figure> </div>"+"</td><td>" + test[i].duration + "</td> <td>" + test[i].rating +"</td></tr>");
                     }
                 }
             }

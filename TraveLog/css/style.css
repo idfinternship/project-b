@@ -378,3 +378,20 @@ main {
 #AboutPageText{
   color: white;
 }
+
+.form-control {
+  width: 55%;
+  height:auto;
+  background-color: #343a40;
+  color: #b6b6b6;
+  border: none;
+}
+
+.container{
+  margin-left:100px;
+  max-width: calc(100% - 100px);
+}
+
+.popupImage{
+  z-index: 10000;
+}

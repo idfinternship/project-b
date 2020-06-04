@@ -13,9 +13,8 @@
   <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>TraveLog test</title>
+    <title>TraveLog</title>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="/resources/demos/style.css">
     <script src="js/jquery-1.12.4.js"></script>
     <script src="js/jquery-ui.js"></script>
     <script src="js/three.min.js"></script>
@@ -35,7 +34,6 @@
     <script src="js/fb.js"></script>
     <div id="fb-root"></div>
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/lt_LT/sdk.js#xfbml=1&version=v6.0&appId=558173124816363&autoLogAppEvents=1"></script>
-    <script src="js/loadselectedcountries.js"></script>
     <div class="container">
       <?php if($msg != ''): ?>
         <script type="text/javascript">$('.alert').alert()</script>

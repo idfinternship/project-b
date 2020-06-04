@@ -58,9 +58,9 @@
     <?php require('navbar.php'); ?>
     <div class="container">
     <?php if(!$isLoggedIn): ?>
-        <form method="POST" action="<?php $_SERVER['PHP_SELF']; ?>">
+        <form method="POST" action="<?php $_SERVER['PHP_SELF']; ?>" class="form-control">
             <label>Username:</label>
-            <input type="text" name="username">
+            <input type="text" name="username" class="popupTextBox">
             <br>
             <button type="submit" name="register" class="btn btn-primary">Register</button>
         </form>
@@ -68,14 +68,14 @@
     </div>
     <div id="myModalL" class="modal">
       <div class="modal-content">
-        <div class="mdl-layout-spacer"><span class="close">&times;</span></div>
+        <div class="mdl-layout-spacer"><span class="close" id="modalClose1">&times;</span></div>
         <?php require("login_popup.php"); ?>
       </div>
     </div>
 
     <div id="myModalR" class="modal">
       <div class="modal-content">
-        <div class="mdl-layout-spacer"><span class="close">&times;</span></div>
+        <div class="mdl-layout-spacer"><span class="close" id="modalClose2">&times;</span></div>
         <?php require("register_popup.php"); ?>
       </div>
     </div>

@@ -163,18 +163,9 @@ cursor: pointer;
   margin-right: 20px;
 }
 
-.form-control {
-  width: 55%;
-  height:auto;
-  background-color: #343a40;
-  color: white;
-  border: none;
-}
 
-.container{
-  margin-left:100px;
-  max-width: calc(100% - 100px);
-}
+
+
 
 @media only screen and (max-width: 600px) {
 

@@ -39,7 +39,7 @@ require('config/db.php');
 $host = 'localhost';
 $db   = 'travelog';
 $user = 'root';
-$pass = '';
+$pass = 'password';
 $charset = 'utf8mb4';
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
 $options = [
@@ -53,10 +53,13 @@ $orders=array("destinationName","duration","rating");
 $key=array_search($_POST['Sort'],$orders);
 $order=$orders[$key];
  
-$stmt = $pdo->prepare("SELECT s.* FROM (SELECT k.name,i.listingId FROM country_has_listing i LEFT JOIN country k ON k.id= i.countryId) p
- INNER JOIN listing s ON s.id = p.listingId AND s.rating BETWEEN :reitingas AND :reitingas1 AND s.duration
-BETWEEN :DurationFilter0 AND :DurationFilter1
- WHERE p.name LIKE :inputValue ORDER BY $order");
+$stmt = $pdo->prepare("SELECT s.* FROM 
+    (SELECT k.name,i.listingId FROM country_has_listing i 
+    LEFT JOIN country k ON k.id= i.countryId) p
+    INNER JOIN listing s 
+    ON s.id = p.listingId AND s.rating BETWEEN :reitingas AND :reitingas1 AND s.duration
+    BETWEEN :DurationFilter0 AND :DurationFilter1
+    WHERE p.name LIKE :inputValue ORDER BY $order");
  
 $stmt->execute([
 ':reitingas' => $_POST["reitingas"],
